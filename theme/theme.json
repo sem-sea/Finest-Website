@@ -1,0 +1,134 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "The Finest Impact",
+	"settings": {
+		"appearanceTools": true,
+		"useRootPaddingAwareAlignments": true,
+		"layout": {
+			"contentSize": "760px",
+			"wideSize": "1200px"
+		},
+		"color": {
+			"palette": [
+				{ "slug": "zwart", "name": "Zwart", "color": "#000000" },
+				{ "slug": "linnen", "name": "Linnen", "color": "#F7F3EE" },
+				{ "slug": "klei", "name": "Klei", "color": "#DCCDBC" },
+				{ "slug": "rand", "name": "Rand", "color": "#E0D6CA" },
+				{ "slug": "grijs", "name": "Grijs (secundaire tekst)", "color": "#5C5C5C" },
+				{ "slug": "warm-donker", "name": "Warm donker", "color": "#262626" }
+			],
+			"gradients": [],
+			"duotone": [],
+			"custom": false,
+			"customGradient": false,
+			"customDuotone": false
+		},
+		"typography": {
+			"fontFamilies": [
+				{
+					"slug": "jost",
+					"name": "Jost",
+					"fontFamily": "'Jost', sans-serif",
+					"fontFace": [
+						{ "fontFamily": "Jost", "fontWeight": "200 500", "fontStyle": "normal", "src": [ "file:./assets/fonts/jost-variable.woff2" ] }
+					]
+				},
+				{
+					"slug": "hanken-grotesk",
+					"name": "Hanken Grotesk",
+					"fontFamily": "'Hanken Grotesk', sans-serif",
+					"fontFace": [
+						{ "fontFamily": "Hanken Grotesk", "fontWeight": "300 700", "fontStyle": "normal", "src": [ "file:./assets/fonts/hanken-grotesk-variable.woff2" ] }
+					]
+				}
+			],
+			"fontSizes": [
+				{ "slug": "label", "name": "Label", "size": "12px" },
+				{ "slug": "small", "name": "Small", "size": "14px" },
+				{ "slug": "body", "name": "Body", "size": "17px" },
+				{ "slug": "medium", "name": "Medium", "size": "20px" },
+				{ "slug": "kop", "name": "Kop", "size": "clamp(1.75rem, 1.2rem + 2vw, 2.75rem)" },
+				{ "slug": "display", "name": "Display", "size": "clamp(2.5rem, 1.5rem + 4vw, 4.5rem)" }
+			],
+			"fontWeight": true,
+			"customFontSize": false,
+			"lineHeight": true,
+			"letterSpacing": true
+		},
+		"spacing": {
+			"units": ["px", "%", "vw", "em", "rem"],
+			"spacingScale": {
+				"operator": "*",
+				"increment": 1.5,
+				"steps": 7,
+				"mediumStep": 24,
+				"unit": "px"
+			},
+			"padding": true,
+			"margin": true,
+			"blockGap": true
+		},
+		"border": {
+			"radius": false,
+			"color": true,
+			"width": true
+		}
+	},
+	"styles": {
+		"color": {
+			"background": "var(--wp--preset--color--linnen)",
+			"text": "#000000"
+		},
+		"typography": {
+			"fontFamily": "var(--wp--preset--font-family--hanken-grotesk)",
+			"fontSize": "var(--wp--preset--font-size--body)",
+			"lineHeight": "1.7"
+		},
+		"spacing": {
+			"blockGap": "24px"
+		},
+		"elements": {
+			"heading": {
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--jost)",
+					"fontWeight": "200",
+					"letterSpacing": "-0.01em",
+					"lineHeight": "1.1"
+				}
+			},
+			"link": {
+				"color": { "text": "#000000" },
+				":hover": { "color": { "text": "var(--wp--preset--color--grijs)" } }
+			},
+			"button": {
+				"color": {
+					"background": "var(--wp--preset--color--zwart)",
+					"text": "var(--wp--preset--color--linnen)"
+				},
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--jost)",
+					"fontWeight": "400"
+				},
+				":hover": {
+					"color": {
+						"background": "var(--wp--preset--color--grijs)",
+						"text": "var(--wp--preset--color--linnen)"
+					}
+				}
+			}
+		},
+		"blocks": {
+			"core/heading": {
+				"typography": { "fontWeight": "200" }
+			}
+		}
+	},
+	"templateParts": [
+		{ "name": "header", "title": "Header", "area": "header" },
+		{ "name": "footer", "title": "Footer", "area": "footer" }
+	],
+	"customTemplates": [
+		{ "name": "page-onepager", "title": "Onepager (geen titel-header)", "postTypes": ["page"] }
+	]
+}

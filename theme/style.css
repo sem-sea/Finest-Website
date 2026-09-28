@@ -1,0 +1,80 @@
+/*
+Theme Name: The Finest Impact
+Theme URI: https://thefinestimpact.com
+Author: The Finest Impact
+Description: Custom block theme voor The Finest Impact — AI-marketingplatform voor onafhankelijke opticiens. Gebouwd rond de merkgids: zwart/linnen/klei (70/25/5), Jost voor koppen, Hanken Grotesk voor lopende tekst.
+Version: 1.0.0
+Requires at least: 6.7
+Tested up to: 6.8
+Requires PHP: 8.1
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: finest-impact
+*/
+
+/* Design tokens live in theme.json. This file only holds small, global rules
+   that theme.json cannot express (see each rule for why). */
+
+html {
+	scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+	*, *::before, *::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+/* One background per section (brand rule): never let a block's own children
+   introduce a second background inside a dark section without deliberate
+   contrast handling. */
+.is-style-fi-dark-section {
+	background-color: var(--wp--preset--color--zwart);
+	color: var(--wp--preset--color--linnen);
+}
+.is-style-fi-dark-section a {
+	color: var(--wp--preset--color--linnen);
+}
+
+.fi-eyebrow {
+	font-family: var(--wp--preset--font-family--jost);
+	font-size: 12px;
+	letter-spacing: 0.28em;
+	text-transform: uppercase;
+}
+
+.fi-hairline {
+	width: 64px;
+	height: 1px;
+	background: var(--wp--preset--color--klei);
+	border: none;
+	margin: 24px 0;
+}
+
+/* Buttons: brand guide says weight never heavier than 500, generous tracking */
+.wp-block-button__link {
+	font-family: var(--wp--preset--font-family--jost);
+	font-weight: 400;
+	letter-spacing: 0.04em;
+	border-radius: 2px;
+	padding: 16px 32px;
+}
+
+.wp-block-button.is-style-fi-outline .wp-block-button__link {
+	background: transparent;
+	border: 1px solid currentColor;
+	color: inherit;
+}
+
+/* Team / card grid photo crop consistency */
+.fi-team-photo img {
+	aspect-ratio: 4/5;
+	object-fit: cover;
+	width: 100%;
+}

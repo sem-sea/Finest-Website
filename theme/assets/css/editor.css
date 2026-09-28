@@ -1,0 +1,24 @@
+/* Loaded only in the block editor iframe (add_editor_style), so custom
+   utility classes used in patterns/content preview correctly for editors —
+   theme.json already covers colors/fonts/sizes, this just adds the
+   handful of classes style.css defines that theme.json can't express. */
+
+.fi-eyebrow {
+	font-family: var(--wp--preset--font-family--jost);
+	font-size: 12px;
+	letter-spacing: 0.28em;
+	text-transform: uppercase;
+}
+
+.fi-hairline {
+	width: 64px;
+	height: 1px;
+	background: var(--wp--preset--color--klei);
+	border: none;
+	margin: 24px 0;
+}
+
+.is-style-fi-dark-section {
+	background-color: var(--wp--preset--color--zwart);
+	color: var(--wp--preset--color--linnen);
+}
