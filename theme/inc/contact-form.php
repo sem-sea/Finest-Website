@@ -1,7 +1,7 @@
 <?php
 /**
  * Contact form: shortcode renders the form (with a real nonce, since this
- * runs as PHP at request time — post_content itself is never executed as
+ * runs as PHP at request time; post_content itself is never executed as
  * PHP by WordPress, so the nonce field cannot live in block markup
  * directly), and template_redirect handles the POST.
  *
@@ -17,7 +17,7 @@ function finest_contact_form_shortcode() {
 	$error = isset( $_GET['finest_contact'] ) && 'error' === $_GET['finest_contact'];
 	?>
 	<?php if ( $sent ) : ?>
-		<p class="finest-form-success"><?php esc_html_e( 'Bedankt voor je bericht — we nemen zo snel mogelijk contact op.', 'finest-impact' ); ?></p>
+		<p class="finest-form-success"><?php esc_html_e( 'Bedankt voor je bericht. We nemen zo snel mogelijk contact op.', 'finest-impact' ); ?></p>
 	<?php else : ?>
 		<?php if ( $error ) : ?>
 			<p class="finest-form-error"><?php esc_html_e( 'Er ging iets mis. Probeer het opnieuw of mail ons direct op info@thefinestimpact.com.', 'finest-impact' ); ?></p>

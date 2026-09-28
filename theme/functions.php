@@ -4,7 +4,7 @@
  *
  * Block theme: design tokens live in theme.json, page content lives in
  * native Gutenberg blocks (post_content), so content editors work with the
- * normal WordPress block editor — no ACF, no hardcoded PHP templates.
+ * normal WordPress block editor: no ACF, no hardcoded PHP templates.
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -37,7 +37,7 @@ add_action( 'after_setup_theme', 'finest_theme_setup' );
 
 /**
  * Fonts are self-hosted (theme.json fontFace) rather than loaded from
- * fonts.googleapis.com — avoids sending EU visitors' IPs to a third party
+ * fonts.googleapis.com, avoiding sending EU visitors' IPs to a third party
  * on every page load (see Fase 8 / GDPR notes) and avoids FOUC from a
  * render-blocking external stylesheet.
  */
@@ -65,7 +65,7 @@ add_action( 'init', 'finest_register_pattern_categories' );
 
 /**
  * WordPress auto-registers any .php file in the theme's patterns/ directory
- * that carries a "Title:"/"Slug:" header comment (since WP 6.0) — no manual
+ * that carries a "Title:"/"Slug:" header comment (since WP 6.0); no manual
  * register_block_pattern() calls needed for the ones designers/editors pick
  * from the inserter. We still expose finest_get_pattern_content() below so
  * provisioning can pull the exact same markup into a page's post_content.

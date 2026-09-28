@@ -1,7 +1,7 @@
 <?php
 /**
- * "1-zip" auto-provisioning: activating this theme builds the full site —
- * pages, permalinks, taxonomy terms — with no manual setup.
+ * "1-zip" auto-provisioning: activating this theme builds the full site
+ * (pages, permalinks, taxonomy terms) with no manual setup.
  *
  * Every lesson from the case-study table in the WordPress Build Blueprint is
  * applied here on purpose:
@@ -15,7 +15,7 @@
  *    or every internal link silently falls back to the homepage.
  *  - Custom taxonomy registration happens on init, and all provisioning
  *    that touches it runs on/after admin_init (after_switch_theme fires
- *    post-init in a real switch_theme() request) — never on plugins_loaded.
+ *    post-init in a real switch_theme() request); never on plugins_loaded.
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -23,7 +23,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Register the "Nieuws" category taxonomy used by native posts (The Finest
  * News uses core `post`, not a custom post type, so it gets archives/RSS/
- * categories for free — see functions.php comment).
+ * categories for free; see functions.php comment).
  */
 function finest_register_taxonomies() {
 	register_taxonomy(
@@ -44,7 +44,7 @@ function finest_register_taxonomies() {
 add_action( 'init', 'finest_register_taxonomies' );
 
 /**
- * Klantverhalen (client stories) as their own post type — separate from
+ * Klantverhalen (client stories) as their own post type, separate from
  * Nieuws so the two "vogue.nl-style" sections (Fase 1 briefing) don't mix
  * in one archive/category list.
  */
@@ -70,7 +70,7 @@ add_action( 'init', 'finest_register_post_types' );
 
 /**
  * Create a page if (and only if) it doesn't already exist at this exact
- * parent — safe to call on every activation.
+ * parent; safe to call on every activation.
  *
  * @param string $slug
  * @param string $title
@@ -122,7 +122,7 @@ function finest_ensure_term( $name, $taxonomy, $parent_id = 0 ) {
 
 /**
  * The actual provisioning run: pages, terms, front-page setting.
- * Safe to call more than once — every step is idempotent.
+ * Safe to call more than once: every step is idempotent.
  */
 function finest_provision_content() {
 	require_once FINEST_THEME_DIR . '/inc/content-pages.php';
@@ -167,7 +167,7 @@ function finest_provision_content() {
 
 /**
  * Build the primary nav menu from the provisioned pages, only if a menu
- * isn't already assigned — avoids clobbering manual edits on re-activation.
+ * isn't already assigned (avoids clobbering manual edits on re-activation).
  */
 function finest_ensure_primary_menu() {
 	if ( has_nav_menu( 'primary' ) ) {
@@ -223,7 +223,7 @@ function finest_ensure_primary_menu() {
 }
 
 /**
- * Runs on theme activation. Permalinks are fixed here too — a fresh WP
+ * Runs on theme activation. Permalinks are fixed here too: a fresh WP
  * install defaults to plain "?p=123" links, which silently sends every
  * pretty internal link ("/over-ons/") back to the homepage instead of
  * a 404 (Fase 5's single most important gotcha).

@@ -1,5 +1,5 @@
 /* Loaded only in the block editor iframe (add_editor_style), so custom
-   utility classes used in patterns/content preview correctly for editors —
+   utility classes used in patterns/content preview correctly for editors;
    theme.json already covers colors/fonts/sizes, this just adds the
    handful of classes style.css defines that theme.json can't express. */
 

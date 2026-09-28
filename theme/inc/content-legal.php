@@ -13,7 +13,7 @@ function finest_legal_concept_notice() {
 <!-- wp:group {"backgroundColor":"klei","style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"20px","bottom":"20px","left":"24px","right":"24px"},"margin":{"bottom":"var:preset|spacing|40"}}},"borderColor":"rand","layout":{"type":"constrained"}} -->
 <div class="wp-block-group has-border-color has-rand-border-color has-klei-background-color has-background" style="border-width:1px;margin-bottom:var(--wp--preset--spacing--40);padding-top:20px;padding-right:24px;padding-bottom:20px;padding-left:24px">
 <!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size"><strong>Concept — nog niet juridisch gecontroleerd.</strong> Deze pagina is een startpunt op basis van de bekende bedrijfsgegevens. Ontbrekende gegevens (KvK-nummer, btw-nummer, vestigingsadres) zijn hieronder als [AAN TE VULLEN] gemarkeerd. Laat deze tekst controleren door een jurist voordat de site live gaat.</p>
+<p class="has-small-font-size"><strong>Concept: nog niet juridisch gecontroleerd.</strong> Deze pagina is een startpunt op basis van de bekende bedrijfsgegevens. Ontbrekende gegevens (KvK-nummer, btw-nummer, vestigingsadres) zijn hieronder als [AAN TE VULLEN] gemarkeerd. Laat deze tekst controleren door een jurist voordat de site live gaat.</p>
 <!-- /wp:paragraph -->
 </div>
 <!-- /wp:group -->
@@ -66,7 +66,7 @@ E-mail: <a href="mailto:info@thefinestimpact.com">info@thefinestimpact.com</a></
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>[AAN TE VULLEN — looptijd, opzegtermijn en verlengingsvoorwaarden worden per overeenkomst vastgelegd.]</p>
+<p>[AAN TE VULLEN: looptijd, opzegtermijn en verlengingsvoorwaarden worden per overeenkomst vastgelegd.]</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":2,"fontSize":"medium"} -->
@@ -74,7 +74,7 @@ E-mail: <a href="mailto:info@thefinestimpact.com">info@thefinestimpact.com</a></
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>[AAN TE VULLEN — aansprakelijkheidsbeperking, over te laten aan juridische review voordat deze pagina definitief wordt.]</p>
+<p>[AAN TE VULLEN: aansprakelijkheidsbeperking, over te laten aan juridische review voordat deze pagina definitief wordt.]</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":2,"fontSize":"medium"} -->
@@ -116,7 +116,7 @@ E-mail: <a href="mailto:info@thefinestimpact.com">info@thefinestimpact.com</a></
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Deze verklaring beschrijft alleen de gegevens die deze website daadwerkelijk verzamelt — geen algemene claims over cookies of tracking die niet gebruikt worden.</p>
+<p>Deze verklaring beschrijft alleen de gegevens die deze website daadwerkelijk verzamelt: geen algemene claims over cookies of tracking die niet gebruikt worden.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list -->
@@ -127,7 +127,7 @@ E-mail: <a href="mailto:info@thefinestimpact.com">info@thefinestimpact.com</a></
 <!-- /wp:list -->
 
 <!-- wp:paragraph -->
-<p>[AAN TE VULLEN — zodra analytics-, marketing- of trackingcookies daadwerkelijk worden ingezet (bijv. Google Analytics, advertentiepixels), moeten die hier expliciet benoemd worden, samen met een cookiebanner die "alles accepteren" en "alles weigeren" even prominent aanbiedt. Op dit moment zijn geen niet-essentiële cookies actief.]</p>
+<p>[AAN TE VULLEN: zodra analytics-, marketing- of trackingcookies daadwerkelijk worden ingezet (bijv. Google Analytics, advertentiepixels), moeten die hier expliciet benoemd worden, samen met een cookiebanner die "alles accepteren" en "alles weigeren" even prominent aanbiedt. Op dit moment zijn geen niet-essentiële cookies actief.]</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":2,"fontSize":"medium"} -->
@@ -135,7 +135,7 @@ E-mail: <a href="mailto:info@thefinestimpact.com">info@thefinestimpact.com</a></
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>[AAN TE VULLEN — hoe lang contactformulier-inzendingen bewaard blijven.]</p>
+<p>[AAN TE VULLEN: hoe lang contactformulier-inzendingen bewaard blijven.]</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":2,"fontSize":"medium"} -->

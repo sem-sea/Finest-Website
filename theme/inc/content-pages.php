@@ -1,7 +1,7 @@
 <?php
 /**
  * Real page content (Gutenberg block markup) sourced from the client's own
- * "Website teksten + briefing versie def" document — nothing here is
+ * "Website teksten + briefing versie def" document; nothing here is
  * invented (Fase 8). Legal pages are the one exception the client
  * explicitly approved: a concept, clearly marked as such, since no legal
  * text was supplied in the briefing.
@@ -208,7 +208,7 @@ HTML;
 function finest_faq_block() {
 	$items = array(
 		array( 'Wat is The Finest Impact?', 'The Finest Impact is een compleet marketingteam in één platform, ontwikkeld voor de optiek. Het helpt je bij alles wat nodig is om je marketing structureel goed te organiseren. Van strategie en campagnes tot content, social media, e-mailmarketing, vindbaarheid, marktinzichten en analyse. Alles vertrekt vanuit jouw bedrijf, jouw klanten en jouw commerciële doelen. Zo krijg je meer marketingkracht, zonder zelf een volledige marketingafdeling op te bouwen.' ),
-		array( 'Voor wie is The Finest Impact bedoeld?', 'Voor zelfstandige opticiens die marketing belangrijk vinden, maar merken dat het er in de praktijk te vaak bij wordt gedaan. Misschien ligt marketing nu bij jou als ondernemer. Misschien doet een medewerker het erbij. Of werk je met verschillende bureaus en freelancers. The Finest Impact brengt daar meer structuur, snelheid en samenhang in — één platform waarin jouw gehele marketingteam samenkomt.' ),
+		array( 'Voor wie is The Finest Impact bedoeld?', 'Voor zelfstandige opticiens die marketing belangrijk vinden, maar merken dat het er in de praktijk te vaak bij wordt gedaan. Misschien ligt marketing nu bij jou als ondernemer. Misschien doet een medewerker het erbij. Of werk je met verschillende bureaus en freelancers. The Finest Impact brengt daar meer structuur, snelheid en samenhang in: één platform waarin jouw gehele marketingteam samenkomt.' ),
 		array( 'Wat kan The Finest Impact voor mijn optiekbedrijf doen?', 'The Finest Impact helpt je om vooruit te kijken, campagnes op tijd te plannen, regelmatig zichtbaar te zijn, klanten opnieuw te activeren en beter gebruik te maken van kansen in je markt. Niet meer iedere week opnieuw bedenken wat je moet posten of welke actie je moet verzinnen. Je werkt vanuit een duidelijke marketinglijn.' ),
 		array( 'Is The Finest Impact alleen bedoeld voor content en social media?', 'Nee. Content is maar één onderdeel van marketing. The Finest Impact helpt ook bij strategie, campagnes, klantactivatie, e-mailmarketing, lokale zichtbaarheid, vindbaarheid in Google en AI, marktontwikkelingen en het analyseren van wat werkt.' ),
 		array( 'Werkt The Finest Impact met AI?', 'Ja, AI speelt een belangrijke rol. Maar The Finest Impact is niet ontwikkeld om simpelweg zoveel mogelijk content te produceren. AI wordt ingezet om sneller te kunnen onderzoeken, plannen, maken, analyseren en verbeteren. Jouw bedrijf, klanten en commerciële doelen blijven altijd het uitgangspunt.' ),
@@ -423,11 +423,11 @@ function finest_contact_page_content() {
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Karin Boon — Head of Growth<br>+31 6 48 46 99 24</p>
+<p>Karin Boon, Head of Growth<br>+31 6 48 46 99 24</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Manon van Gasteren — Head of Marketing<br>+31 6 22 80 82 36</p>
+<p>Manon van Gasteren, Head of Marketing<br>+31 6 22 80 82 36</p>
 <!-- /wp:paragraph -->
 
 </div>
