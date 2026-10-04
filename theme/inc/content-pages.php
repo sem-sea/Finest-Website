@@ -44,10 +44,37 @@ HTML;
 }
 
 function finest_home_page_content() {
-	$hero = <<<'HTML'
-<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--60)">
+	$hero_photo_id = finest_ensure_photo( 'fotografie-website2.png', 'The Finest Impact — portret 1' );
 
+	$hero_open = '';
+	$hero_close = "\n</div>\n<!-- /wp:cover -->";
+	if ( $hero_photo_id ) {
+		$hero_url = esc_url( wp_get_attachment_image_url( $hero_photo_id, 'full' ) );
+		$hero_alt = esc_attr( get_post_meta( $hero_photo_id, '_wp_attachment_image_alt', true ) );
+		// Native Cover block: the client can swap this for a real video
+		// later (Media panel → upload video) with zero code changes — the
+		// block natively supports a video background, this just starts as
+		// a photo one. fi-hero-video adds a slow, continuous Ken Burns
+		// zoom (assets/js/motion.js doesn't touch it; it's a plain CSS
+		// animation, so it's covered by the existing global
+		// prefers-reduced-motion rule in style.css without extra wiring).
+		$hero_open = <<<HTML
+<!-- wp:cover {"url":"{$hero_url}","id":{$hero_photo_id},"dimRatio":50,"overlayColor":"zwart","minHeight":640,"contentPosition":"bottom left","textColor":"linnen","className":"fi-hero-video"} -->
+<div class="wp-block-cover fi-hero-video is-position-bottom-left has-linnen-color has-text-color" style="min-height:640px">
+<span aria-hidden="true" class="wp-block-cover__background has-zwart-background-color has-background-dim-50 has-background-dim"></span>
+<img class="wp-block-cover__image-background wp-image-{$hero_photo_id}" alt="{$hero_alt}" src="{$hero_url}" data-object-fit="cover"/>
+<div class="wp-block-cover__inner-container">
+
+HTML;
+	} else {
+		// Fallback if the sideload ever fails: same content, plain section,
+		// no background photo, so the page still provisions correctly.
+		$hero_open  = "<!-- wp:group {\"style\":{\"spacing\":{\"padding\":{\"top\":\"var:preset|spacing|70\",\"bottom\":\"var:preset|spacing|60\"}}},\"layout\":{\"type\":\"constrained\"}} -->\n";
+		$hero_open .= '<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--60)">' . "\n\n";
+		$hero_close = "\n</div>\n<!-- /wp:group -->";
+	}
+
+	$hero = $hero_open . <<<'HTML'
 <!-- wp:paragraph {"className":"fi-eyebrow"} -->
 <p class="fi-eyebrow">Own your spotlight</p>
 <!-- /wp:paragraph -->
@@ -78,7 +105,7 @@ function finest_home_page_content() {
 
 HTML;
 	$hero .= finest_cta_button( 'Plan een kennismaking', '/contact/' );
-	$hero .= "\n</div>\n<!-- /wp:group -->";
+	$hero .= $hero_close;
 
 	$herkenning = <<<'HTML'
 <!-- wp:group {"backgroundColor":"zwart","textColor":"linnen","className":"is-style-fi-dark-section","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60","left":"var:preset|spacing|50","right":"var:preset|spacing|50"}}},"layout":{"type":"constrained"}} -->
@@ -208,10 +235,12 @@ HTML;
 	$slot .= finest_cta_button( 'Plan een kennismaking', '/contact/' );
 	$slot .= "\n</div>\n<!-- /wp:group -->";
 
-	$photo_portret = finest_photo_block( finest_ensure_photo( 'fotografie-website2.png', 'The Finest Impact — portret 1' ) );
-	$photo_team    = finest_photo_block( finest_ensure_photo( 'the_finest_impact1.png', 'The Finest Impact — portret 2' ) );
+	// The hero already uses "portret 1" as its cover background; this second
+	// photo gets its own full-bleed moment further down so the same image
+	// doesn't appear twice in a row.
+	$photo_team = finest_photo_block( finest_ensure_photo( 'the_finest_impact1.png', 'The Finest Impact — portret 2' ) );
 
-	return implode( "\n\n", array_filter( array( $hero, $photo_portret, $herkenning, $wat_is, $photo_team, $opticiens, $faq, $slot ) ) );
+	return implode( "\n\n", array_filter( array( $hero, $herkenning, $wat_is, $photo_team, $opticiens, $faq, $slot ) ) );
 }
 
 function finest_faq_item( $question, $answer ) {

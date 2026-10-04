@@ -110,6 +110,29 @@ html.motion-fallback .fi-reveal {
 	transform: none !important;
 }
 
+/* Hero "video" (see finest_home_page_content(), functions.php comment):
+   a native Cover block, video-upgradeable from wp-admin with no code
+   change. Until real footage exists, a slow continuous zoom on the photo
+   reads as ambient motion rather than a static image — plain CSS
+   animation, so the existing @media (prefers-reduced-motion) rule above
+   already disables it, no extra JS wiring needed. */
+.fi-hero-video {
+	overflow: hidden;
+}
+.fi-hero-video .wp-block-cover__image-background,
+.fi-hero-video .wp-block-cover__video-background {
+	animation: fi-kenburns 24s ease-in-out infinite alternate;
+	will-change: transform;
+}
+@keyframes fi-kenburns {
+	from {
+		transform: scale(1);
+	}
+	to {
+		transform: scale(1.08);
+	}
+}
+
 .fi-scroll-progress {
 	position: fixed;
 	top: 0;
