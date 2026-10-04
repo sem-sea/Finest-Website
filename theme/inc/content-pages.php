@@ -12,6 +12,25 @@
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Full-bleed, editable image block for a photo already sideloaded into the
+ * media library via finest_ensure_photo(). fi-reveal is purely a motion hook
+ * (see assets/js/motion.js) — removing it in the block editor just turns
+ * off the entrance animation, the image itself is a normal attachment.
+ */
+function finest_photo_block( $attachment_id ) {
+	if ( ! $attachment_id ) {
+		return '';
+	}
+	$url = esc_url( wp_get_attachment_image_url( $attachment_id, 'full' ) );
+	$alt = esc_attr( get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ) );
+	return <<<HTML
+<!-- wp:image {"id":{$attachment_id},"sizeSlug":"full","linkDestination":"none","align":"full","className":"fi-reveal"} -->
+<figure class="wp-block-image alignfull size-full fi-reveal"><img src="{$url}" alt="{$alt}" class="wp-image-{$attachment_id}"/></figure>
+<!-- /wp:image -->
+HTML;
+}
+
 function finest_cta_button( $label = 'Plan een kennismaking', $url = '/contact/' ) {
 	$url = esc_url( $url );
 	$label = esc_html( $label );
@@ -33,8 +52,8 @@ function finest_home_page_content() {
 <p class="fi-eyebrow">Own your spotlight</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading {"level":1,"fontSize":"display"} -->
-<h1 class="wp-block-heading has-display-font-size">Maximale marketingkracht. Optimale zorg.</h1>
+<!-- wp:heading {"level":1,"fontSize":"display","className":"fi-reveal-lines"} -->
+<h1 class="wp-block-heading has-display-font-size fi-reveal-lines">Maximale marketingkracht. Optimale zorg.</h1>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"fontSize":"medium"} -->
@@ -65,8 +84,8 @@ HTML;
 <!-- wp:group {"backgroundColor":"zwart","textColor":"linnen","className":"is-style-fi-dark-section","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60","left":"var:preset|spacing|50","right":"var:preset|spacing|50"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group is-style-fi-dark-section has-linnen-color has-zwart-background-color has-text-color has-background" style="padding-top:var(--wp--preset--spacing--60);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--60);padding-left:var(--wp--preset--spacing--50)">
 
-<!-- wp:heading {"level":2,"fontSize":"kop"} -->
-<h2 class="wp-block-heading has-kop-font-size">Als opticien ligt je aandacht in de winkel</h2>
+<!-- wp:heading {"level":2,"fontSize":"kop","className":"fi-reveal-lines"} -->
+<h2 class="wp-block-heading has-kop-font-size fi-reveal-lines">Als opticien ligt je aandacht in de winkel</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
@@ -189,7 +208,10 @@ HTML;
 	$slot .= finest_cta_button( 'Plan een kennismaking', '/contact/' );
 	$slot .= "\n</div>\n<!-- /wp:group -->";
 
-	return implode( "\n\n", array( $hero, $herkenning, $wat_is, $opticiens, $faq, $slot ) );
+	$photo_portret = finest_photo_block( finest_ensure_photo( 'fotografie-website2.png', 'The Finest Impact — portret 1' ) );
+	$photo_team    = finest_photo_block( finest_ensure_photo( 'the_finest_impact1.png', 'The Finest Impact — portret 2' ) );
+
+	return implode( "\n\n", array_filter( array( $hero, $photo_portret, $herkenning, $wat_is, $photo_team, $opticiens, $faq, $slot ) ) );
 }
 
 function finest_faq_item( $question, $answer ) {
@@ -267,8 +289,8 @@ function finest_over_ons_page_content() {
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--60)">
 
-<!-- wp:heading {"level":1,"fontSize":"display"} -->
-<h1 class="wp-block-heading has-display-font-size">Marketing first. Technology powered. Human controlled.</h1>
+<!-- wp:heading {"level":1,"fontSize":"display","className":"fi-reveal-lines"} -->
+<h1 class="wp-block-heading has-display-font-size fi-reveal-lines">Marketing first. Technology powered. Human controlled.</h1>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
@@ -332,8 +354,8 @@ function finest_diensten_page_content() {
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--60)">
 
-<!-- wp:heading {"level":1,"fontSize":"display"} -->
-<h1 class="wp-block-heading has-display-font-size">Van strategie naar marketing die presteert</h1>
+<!-- wp:heading {"level":1,"fontSize":"display","className":"fi-reveal-lines"} -->
+<h1 class="wp-block-heading has-display-font-size fi-reveal-lines">Van strategie naar marketing die presteert</h1>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
@@ -386,8 +408,8 @@ function finest_contact_page_content() {
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--60)">
 
-<!-- wp:heading {"level":1,"fontSize":"display"} -->
-<h1 class="wp-block-heading has-display-font-size">Plan een kennismaking</h1>
+<!-- wp:heading {"level":1,"fontSize":"display","className":"fi-reveal-lines"} -->
+<h1 class="wp-block-heading has-display-font-size fi-reveal-lines">Plan een kennismaking</h1>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"fontSize":"medium"} -->
@@ -447,8 +469,8 @@ function finest_klantverhalen_intro_content() {
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|50"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--50)">
 
-<!-- wp:heading {"level":1,"fontSize":"display"} -->
-<h1 class="wp-block-heading has-display-font-size">Wat gebeurt er wanneer marketing wél structureel wordt?</h1>
+<!-- wp:heading {"level":1,"fontSize":"display","className":"fi-reveal-lines"} -->
+<h1 class="wp-block-heading has-display-font-size fi-reveal-lines">Wat gebeurt er wanneer marketing wél structureel wordt?</h1>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"fontSize":"medium"} -->
@@ -479,8 +501,8 @@ function finest_nieuws_intro_content() {
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|50"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--50)">
 
-<!-- wp:heading {"level":1,"fontSize":"display"} -->
-<h1 class="wp-block-heading has-display-font-size">Blijf voor op wat er in de optiek gebeurt</h1>
+<!-- wp:heading {"level":1,"fontSize":"display","className":"fi-reveal-lines"} -->
+<h1 class="wp-block-heading has-display-font-size fi-reveal-lines">Blijf voor op wat er in de optiek gebeurt</h1>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->

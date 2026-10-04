@@ -56,7 +56,14 @@ function finest_register_post_types() {
 			'add_new_item'  => __( 'Nieuw klantverhaal toevoegen', 'finest-impact' ),
 		),
 		'public'       => true,
-		'has_archive'  => 'klantverhalen',
+		// No native archive: the /klantverhalen/ page below (with its own
+		// embedded wp:query block) IS the landing page for this post type.
+		// A has_archive route at the same slug would silently win over that
+		// page's rewrite rule and serve WP's bare archive template instead
+		// of the real, editable page content (caught in clean-room testing:
+		// the page provisioned fine, but /klantverhalen/ rendered "Archives:
+		// Klantverhalen" from archive.html, not finest_klantverhalen_intro_content()).
+		'has_archive'  => false,
 		'rewrite'      => array( 'slug' => 'klantverhalen' ),
 		'show_in_rest' => true,
 		'menu_icon'    => 'dashicons-format-quote',
@@ -121,6 +128,58 @@ function finest_ensure_term( $name, $taxonomy, $parent_id = 0 ) {
 }
 
 /**
+ * Sideload a theme asset photo into the media library as a real attachment,
+ * once, so it is a normal, editable/replaceable WordPress image (not a
+ * hardcoded theme-relative path baked into post_content). Idempotent: looks
+ * up by exact attachment title before copying anything.
+ *
+ * @param string $filename Filename under /assets/img/photography/.
+ * @param string $title    Attachment title (also used as the lookup key and
+ *                          the default alt text).
+ * @return int Attachment ID, or 0 if the source file is missing or the
+ *             upload failed.
+ */
+function finest_ensure_photo( $filename, $title ) {
+	$existing = get_posts( array(
+		'post_type'      => 'attachment',
+		'post_status'    => 'inherit',
+		'title'          => $title,
+		'posts_per_page' => 1,
+	) );
+	if ( ! empty( $existing ) ) {
+		return $existing[0]->ID;
+	}
+
+	$source_path = FINEST_THEME_DIR . '/assets/img/photography/' . $filename;
+	if ( ! file_exists( $source_path ) ) {
+		return 0;
+	}
+
+	$filetype = wp_check_filetype( $filename, null );
+	$upload   = wp_upload_bits( $filename, null, file_get_contents( $source_path ) );
+	if ( ! empty( $upload['error'] ) ) {
+		return 0;
+	}
+
+	$attachment_id = wp_insert_attachment( array(
+		'post_mime_type' => $filetype['type'],
+		'post_title'     => $title,
+		'post_status'    => 'inherit',
+	), $upload['file'] );
+
+	if ( is_wp_error( $attachment_id ) || ! $attachment_id ) {
+		return 0;
+	}
+
+	require_once ABSPATH . 'wp-admin/includes/image.php';
+	$metadata = wp_generate_attachment_metadata( $attachment_id, $upload['file'] );
+	wp_update_attachment_metadata( $attachment_id, $metadata );
+	update_post_meta( $attachment_id, '_wp_attachment_image_alt', $title );
+
+	return $attachment_id;
+}
+
+/**
  * The actual provisioning run: pages, terms, front-page setting.
  * Safe to call more than once: every step is idempotent.
  */
@@ -141,14 +200,21 @@ function finest_provision_content() {
 		finest_ensure_term( $cat, 'nieuws_categorie' );
 	}
 
+	// Every one of these pages opens with its own manually-authored <h1> in
+	// post_content (so the hero styling/fi-reveal-lines treatment can differ
+	// per page), so every one of them needs the 'page-onepager' template —
+	// the default 'page' template also renders wp:post-title, which without
+	// this produces two <h1> tags on the same page (caught in clean-room
+	// testing: algemene-voorwaarden and privacyverklaring were shipping with
+	// a duplicate heading).
 	$home_id = finest_ensure_page( 'home', 'Home', finest_home_page_content(), 0, 'page-onepager' );
 	finest_ensure_page( 'over-ons', 'Over ons', finest_over_ons_page_content(), 0, 'page-onepager' );
 	finest_ensure_page( 'diensten', 'Diensten', finest_diensten_page_content(), 0, 'page-onepager' );
 	finest_ensure_page( 'contact', 'Contact', finest_contact_page_content(), 0, 'page-onepager' );
-	finest_ensure_page( 'algemene-voorwaarden', 'Algemene Voorwaarden', finest_algemene_voorwaarden_content() );
-	finest_ensure_page( 'privacyverklaring', 'Privacyverklaring', finest_privacyverklaring_content() );
-	finest_ensure_page( 'klantverhalen', 'Klantverhalen', finest_klantverhalen_intro_content() );
-	finest_ensure_page( 'nieuws', 'The Finest News', finest_nieuws_intro_content() );
+	finest_ensure_page( 'algemene-voorwaarden', 'Algemene Voorwaarden', finest_algemene_voorwaarden_content(), 0, 'page-onepager' );
+	finest_ensure_page( 'privacyverklaring', 'Privacyverklaring', finest_privacyverklaring_content(), 0, 'page-onepager' );
+	finest_ensure_page( 'klantverhalen', 'Klantverhalen', finest_klantverhalen_intro_content(), 0, 'page-onepager' );
+	finest_ensure_page( 'nieuws', 'The Finest News', finest_nieuws_intro_content(), 0, 'page-onepager' );
 
 	// Homepage is a real page (so it's editable like any other page), set
 	// as the static front page rather than left as the latest-posts default.
@@ -157,10 +223,14 @@ function finest_provision_content() {
 		update_option( 'page_on_front', $home_id );
 	}
 
-	$nieuws_page = get_page_by_path( 'nieuws' );
-	if ( $nieuws_page ) {
-		update_option( 'page_for_posts', $nieuws_page->ID );
-	}
+	// Deliberately NOT setting page_for_posts to the nieuws page: WordPress
+	// treats a "Posts page" specially and renders the blog index in its
+	// place, discarding that page's own post_content entirely. The nieuws
+	// page already embeds its own wp:query block (postType "post", same
+	// posts, same category support), so it gets the listing it needs while
+	// staying a normal, fully-editable page like every other one here
+	// (caught in clean-room testing: with page_for_posts set, visiting
+	// /nieuws/ silently skipped finest_nieuws_intro_content() entirely).
 
 	finest_ensure_primary_menu();
 }

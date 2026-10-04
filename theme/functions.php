@@ -52,6 +52,67 @@ function finest_enqueue_assets() {
 add_action( 'wp_enqueue_scripts', 'finest_enqueue_assets' );
 
 /**
+ * Add the js-motion / reduced-motion class to <html> before first paint, so
+ * the "about to reveal" CSS states in style.css (.fi-reveal, .fi-reveal-lines)
+ * never flash visible-then-hidden. Must run at the very top of <head>
+ * (priority 0), stay dependency-free and synchronous: this is not the place
+ * for anything but this one check.
+ */
+function finest_print_motion_class() {
+	?>
+	<script>
+	(function(){
+		var d=document.documentElement;
+		if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+			d.classList.add('reduced-motion');
+		}else{
+			d.classList.add('js-motion');
+		}
+	})();
+	</script>
+	<?php
+}
+add_action( 'wp_head', 'finest_print_motion_class', 0 );
+
+/**
+ * Motion layer: GSAP + ScrollTrigger + SplitText + Lenis, self-hosted (no
+ * CDN dependency, see assets/js/vendor/), plus the theme's own motion.js
+ * that wires them to .fi-reveal / .fi-reveal-lines content. Loaded in the
+ * footer; motion.js is the only thing that ever touches the DOM, and it is
+ * a strict progressive enhancement over ordinary block content (see its own
+ * header comment for the full fallback chain).
+ */
+function finest_enqueue_motion_assets() {
+	$vendor_uri = FINEST_THEME_URI . '/assets/js/vendor/';
+	$vendor_dir = FINEST_THEME_DIR . '/assets/js/vendor/';
+
+	$vendor_files = array(
+		'finest-gsap'         => array( 'gsap.min.js', array() ),
+		'finest-scrolltrigger' => array( 'ScrollTrigger.min.js', array( 'finest-gsap' ) ),
+		'finest-splittext'    => array( 'SplitText.min.js', array( 'finest-gsap' ) ),
+		'finest-lenis'        => array( 'lenis.min.js', array() ),
+	);
+
+	foreach ( $vendor_files as $handle => $file ) {
+		list( $filename, $deps ) = $file;
+		$path = $vendor_dir . $filename;
+		if ( ! file_exists( $path ) ) {
+			continue;
+		}
+		wp_enqueue_script( $handle, $vendor_uri . $filename, $deps, filemtime( $path ), true );
+	}
+
+	wp_enqueue_script(
+		'finest-motion',
+		FINEST_THEME_URI . '/assets/js/motion.js',
+		array( 'finest-gsap', 'finest-scrolltrigger', 'finest-splittext', 'finest-lenis' ),
+		filemtime( FINEST_THEME_DIR . '/assets/js/motion.js' ),
+		true
+	);
+}
+add_action( 'wp_enqueue_scripts', 'finest_enqueue_motion_assets' );
+
+/**
  * Custom block pattern category so our patterns group together in the
  * inserter instead of scattering across "Featured" etc.
  */
