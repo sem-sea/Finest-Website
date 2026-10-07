@@ -788,3 +788,102 @@ html.js-cta .finest-cta-bar:not(.is-visible) {
 		display: none;
 	}
 }
+
+/* ==========================================================================
+   Nieuws (The Finest News): overview grid + article pages. Mobile-first.
+   ========================================================================== */
+.visually-hidden {
+	position: absolute !important;
+	width: 1px; height: 1px;
+	margin: -1px; padding: 0; border: 0;
+	overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+.news-grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 40px 24px;
+}
+@media (min-width: 640px) { .news-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .news-grid { grid-template-columns: repeat(3, 1fr); gap: 56px 32px; } }
+
+.news-card { position: relative; }
+.news-card__media {
+	display: block;
+	aspect-ratio: 4 / 5;
+	overflow: hidden;
+	background: var(--klei);
+	margin-bottom: 16px;
+}
+.news-card__media img {
+	width: 100%; height: 100%;
+	object-fit: cover;
+	transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.news-card:hover .news-card__media img { transform: scale(1.04); }
+.news-card__cat {
+	font-family: var(--font-display);
+	font-size: var(--fs-label);
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--grijs);
+	margin: 0 0 8px;
+}
+.news-card__title {
+	font-family: var(--font-display);
+	font-size: var(--fs-medium);
+	font-weight: 400;
+	line-height: 1.25;
+	margin: 0 0 10px;
+}
+.news-card__title a { text-decoration: none; }
+/* whole card is clickable via the title link; image link is hidden from AT/tab order */
+.news-card__title a::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.news-card__title a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.news-card__title a:focus-visible { outline: 2px solid var(--zwart); outline-offset: 4px; }
+.news-card__excerpt { font-size: var(--fs-small); color: var(--warm-donker); margin: 0 0 10px; }
+.news-card__date { font-size: var(--fs-label); letter-spacing: 0.06em; color: var(--grijs); margin: 0; }
+
+.news-article__intro { padding-top: 40px; padding-bottom: 8px; }
+.news-breadcrumb { font-size: var(--fs-small); color: var(--grijs); margin-bottom: 20px; }
+.news-breadcrumb a { color: var(--grijs); }
+.news-byline { font-size: var(--fs-small); color: var(--grijs); margin: 0 0 8px; }
+.news-hero { margin: 24px 0 40px; }
+.news-hero img {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+}
+@media (min-width: 768px) { .news-hero img { aspect-ratio: 21 / 9; max-height: 560px; } }
+
+.news-article__body { padding-bottom: 56px; }
+.news-article__body > p { font-size: 18px; line-height: 1.75; }
+.news-quote {
+	margin: 36px 0;
+	padding: 4px 0 4px 20px;
+	border-left: 2px solid var(--klei);
+}
+.news-quote p {
+	font-family: var(--font-display);
+	font-weight: 300;
+	font-size: clamp(1.3rem, 1.1rem + 1vw, 1.7rem);
+	line-height: 1.35;
+	margin: 0;
+}
+.news-read-also { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--rand); font-size: var(--fs-body); }
+.news-cta { margin: 32px 0; padding: 24px; background: var(--klei); }
+.news-cta p { margin: 0 0 14px; }
+.news-back { margin-top: 24px; }
+.news-more h2 { margin-bottom: 32px; }
+
+/* Footer link lists: WCAG 2.2 SC 2.5.8 target size (24px minimum) */
+.site-footer p a {
+	display: inline-block;
+	min-height: 24px;
+	padding: 3px 0;
+}
+/* On the klei band, grijs text falls below 4.5:1 */
+.news-more .news-card__cat,
+.news-more .news-card__date,
+.news-cta { color: var(--warm-donker); }
