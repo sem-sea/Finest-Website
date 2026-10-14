@@ -67,18 +67,25 @@
 
     <div class="contact-grid">
       <div>
-        <h2 style="font-size:22px;margin-bottom:16px;">Stuur een bericht</h2>
-        <form id="contact-form">
-          <div class="field"><label for="cf-naam">Naam</label><input id="cf-naam" type="text" placeholder="Je naam" required></div>
-          <div class="field"><label for="cf-email">E-mailadres</label><input id="cf-email" type="email" placeholder="jij@voorbeeld.nl" required></div>
-          <div class="field"><label for="cf-bedrijf">Bedrijfsnaam (optioneel)</label><input id="cf-bedrijf" type="text" placeholder="Naam van je winkel"></div>
-          <div class="field"><label for="cf-bericht">Bericht</label><textarea id="cf-bericht" placeholder="Waar wil je meer over weten?" required></textarea></div>
-          <button type="submit" class="btn">Verstuur bericht</button>
-          <p class="form-note" id="cf-note">Dit is een demo-omgeving — dit formulier verstuurt hier niets. In de WordPress-versie verstuurt het formulier een e-mail naar info@thefinestimpact.com, beveiligd met een nonce, honeypot en rate-limiting.</p>
-        </form>
+        <h2 class="tfi-label-h2">Stuur een bericht</h2>
+        <div class="tfi-form-wrap">
+          <form class="tfi-form tfi-form--demo" id="contact-form" novalidate data-status="init" aria-label="Contactformulier">
+            <div class="tfi-fields">
+              <div class="tfi-field"><label for="tfi-name">Naam</label><span class="wpcf7-form-control-wrap"><input class="tfi-input" id="tfi-name" name="name" type="text" autocomplete="name" maxlength="100" placeholder="Je naam" required></span></div>
+              <div class="tfi-field"><label for="tfi-email">E-mailadres</label><span class="wpcf7-form-control-wrap"><input class="tfi-input" id="tfi-email" name="email" type="email" autocomplete="email" maxlength="150" placeholder="jij@voorbeeld.nl" required></span></div>
+              <div class="tfi-field"><label for="tfi-company">Bedrijfsnaam <span class="tfi-optional">(optioneel)</span></label><span class="wpcf7-form-control-wrap"><input class="tfi-input" id="tfi-company" name="company" type="text" autocomplete="organization" maxlength="120" placeholder="Naam van je winkel"></span></div>
+              <div class="tfi-field"><label for="tfi-message">Bericht</label><span class="wpcf7-form-control-wrap"><textarea class="tfi-input" id="tfi-message" name="message" rows="4" minlength="5" maxlength="3000" placeholder="Waar wil je meer over weten?" required></textarea></span></div>
+              <div class="tfi-consent"><span class="wpcf7-form-control-wrap"><label><input type="checkbox" id="tfi-consent" name="consent" value="1"> <span>Ik ga ermee akkoord dat The Finest Impact mijn gegevens gebruikt om op mijn bericht te reageren. Lees de <a href="/privacyverklaring">privacyverklaring</a>.</span></label></span></div>
+              <div class="tfi-actions"><button type="submit" class="tfi-btn"><span class="tfi-btn__label">Verstuur bericht</span><span class="tfi-btn__busy" aria-hidden="true">Versturen&hellip;</span><span class="tfi-btn__arrow" aria-hidden="true">&rarr;</span><span class="tfi-btn__spinner" aria-hidden="true"></span></button></div>
+            </div>
+            <div class="tfi-success" tabindex="-1"><svg class="tfi-check" viewBox="0 0 52 52" width="56" height="56" focusable="false" aria-hidden="true"><circle class="tfi-check__ring" cx="26" cy="26" r="24"/><path class="tfi-check__tick" d="M15 27l8 8 14-17"/></svg><p class="tfi-success__title">Bedankt, we hebben het gezien</p><p class="tfi-demo-note">Dit is een demo-omgeving: er is niets verzonden. Wil je echt contact? <a id="demo-mail" href="mailto:info@thefinestimpact.com">Stuur een e-mail</a> of <a id="demo-wa" href="https://wa.me/31648469924" target="_blank" rel="noopener noreferrer">app ons via WhatsApp<span class="visually-hidden"> (opent in een nieuw tabblad)</span></a>. In de WordPress-versie verstuurt dit formulier het bericht naar info@thefinestimpact.com.</p><a class="tfi-again" href="/contact">Nog een bericht proberen</a></div>
+            <div class="wpcf7-response-output" role="alert" tabindex="-1"></div>
+          </form>
+          <p class="tfi-alt">Liever appen? <a href="https://wa.me/31648469924?text=Hallo%20The%20Finest%20Impact%2C%20ik%20heb%20een%20vraag." target="_blank" rel="noopener noreferrer">Chat via WhatsApp<span class="visually-hidden"> (opent in een nieuw tabblad)</span></a></p>
+        </div>
       </div>
       <div>
-        <h2 style="font-size:22px;margin-bottom:16px;">Direct contact</h2>
+        <h2 class="tfi-label-h2">Direct contact</h2>
         <p><a href="mailto:info@thefinestimpact.com">info@thefinestimpact.com</a></p>
         <p>Karin Boon, Head of Growth<br>+31 6 48 46 99 24</p>
         <p>Manon van Gasteren, Head of Marketing<br>+31 6 22 80 82 36</p>
@@ -119,5 +126,6 @@
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script src="/assets/js/motion.js"></script>
 
+<script src="/assets/js/contact-demo.js"></script>
 </body>
 </html>
