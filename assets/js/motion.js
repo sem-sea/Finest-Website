@@ -8,6 +8,28 @@
 	'use strict';
 
 	var root = document.documentElement;
+
+	// ---- Scroll and animation settings: change the values here. ----
+	// (A page can also override them before this file loads:
+	//  <script>window.FINEST_MOTION = { smoothScroll: false };</script>)
+	var cfg = {
+		smoothScroll: true,   // soft wheel/trackpad scrolling (Lenis)
+		smoothDuration: 1.1,  // seconds a scroll takes to settle (0.3 - 3)
+		reveals: true,        // headings, photos and cards animate in
+		pinnedRail: true,     // Optiek Stories scrolls sideways on desktop
+		progressBar: true,    // thin progress line at the top
+	};
+	if ( window.FINEST_MOTION ) {
+		for ( var key in cfg ) {
+			if ( Object.prototype.hasOwnProperty.call( window.FINEST_MOTION, key ) ) {
+				cfg[ key ] = window.FINEST_MOTION[ key ];
+			}
+		}
+	}
+	if ( ! cfg.reveals ) {
+		root.classList.add( 'fi-no-reveals' );
+	}
+
 	var reducedMotion =
 		root.classList.contains( 'reduced-motion' ) ||
 		( window.matchMedia && window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches );
@@ -42,9 +64,9 @@
 			var gsap = window.gsap;
 			gsap.registerPlugin( window.ScrollTrigger );
 
-			if ( window.Lenis ) {
+			if ( cfg.smoothScroll && window.Lenis ) {
 				var lenis = new window.Lenis( {
-					duration: 1.1,
+					duration: Number( cfg.smoothDuration ) || 1.1,
 					easing: function ( t ) { return 1 - Math.pow( 1 - t, 3 ); },
 					smoothWheel: true,
 				} );
@@ -54,7 +76,9 @@
 			}
 
 			var headlines = document.querySelectorAll( '.fi-reveal-lines' );
-			if ( window.SplitText && headlines.length ) {
+			if ( ! cfg.reveals ) {
+				// reveals switched off: headings stay as they are.
+			} else if ( window.SplitText && headlines.length ) {
 				gsap.registerPlugin( window.SplitText );
 				headlines.forEach( function ( heading ) {
 					var split = window.SplitText.create( heading, {
@@ -84,7 +108,7 @@
 			}
 
 			var photos = document.querySelectorAll( '.fi-reveal' );
-			if ( photos.length ) {
+			if ( cfg.reveals && photos.length ) {
 				gsap.set( photos, { clipPath: 'inset(16% 16% 16% 16% round 2px)', scale: 1.06 } );
 				window.ScrollTrigger.batch( photos, {
 					start: 'top 88%',
@@ -107,7 +131,7 @@
 				var dots = document.querySelectorAll( '.stories-progress span' );
 				var mm = gsap.matchMedia();
 
-				mm.add( '(min-width: 900px)', function () {
+				if ( cfg.pinnedRail ) mm.add( '(min-width: 900px)', function () {
 					root.classList.add( 'stories-pinned' );
 					var trackWidth = storiesTrack.scrollWidth - storiesTrack.parentElement.offsetWidth;
 					var pinTl = gsap.to( storiesTrack, {
@@ -136,6 +160,7 @@
 					};
 				} );
 
+				if ( cfg.reveals ) {
 				gsap.set( cards, { opacity: 0, y: 24 } );
 				window.ScrollTrigger.batch( cards, {
 					start: 'top 90%',
@@ -144,6 +169,7 @@
 						gsap.to( batch, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.1 } );
 					},
 				} );
+				}
 
 				if ( ! window.matchMedia( '(min-width: 900px)' ).matches && dots.length ) {
 					storiesTrack.addEventListener( 'scroll', function () {
@@ -154,21 +180,23 @@
 				}
 			}
 
-			var bar = document.createElement( 'div' );
-			bar.className = 'fi-scroll-progress';
-			bar.setAttribute( 'aria-hidden', 'true' );
-			document.body.appendChild( bar );
-			gsap.set( bar, { scaleX: 0, transformOrigin: 'left center' } );
-			gsap.to( bar, {
-				scaleX: 1,
-				ease: 'none',
-				scrollTrigger: {
-					trigger: document.documentElement,
-					start: 'top top',
-					end: 'max',
-					scrub: 0.3,
-				},
-			} );
+			if ( cfg.progressBar ) {
+				var bar = document.createElement( 'div' );
+				bar.className = 'fi-scroll-progress';
+				bar.setAttribute( 'aria-hidden', 'true' );
+				document.body.appendChild( bar );
+				gsap.set( bar, { scaleX: 0, transformOrigin: 'left center' } );
+				gsap.to( bar, {
+					scaleX: 1,
+					ease: 'none',
+					scrollTrigger: {
+						trigger: document.documentElement,
+						start: 'top top',
+						end: 'max',
+						scrub: 0.3,
+					},
+				} );
+			}
 
 			window.clearTimeout( fallbackTimer );
 		} catch ( e ) {

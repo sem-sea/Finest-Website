@@ -1230,3 +1230,22 @@ html.js-cta .finest-cta-bar:not(.is-visible) {
 }
 .tfi-form .tfi-demo-note { margin: 0; max-width: 520px; font-family: var(--font-body, 'Hanken Grotesk', sans-serif); font-size: 16px; line-height: 1.6; color: var(--zwart); }
 .tfi-form .tfi-demo-note a { color: var(--zwart); text-underline-offset: 3px; }
+
+/* Heading line reveal: SplitText's clipping mask cut the tails of g, y, p and j
+   at the line-height; extra room below keeps full glyphs, the negative margin
+   leaves the layout alone. */
+.fi-line-mask {
+	padding-top: 0.06em;
+	padding-bottom: 0.22em;
+	margin-top: -0.06em;
+	margin-bottom: -0.22em;
+}
+
+/* motion.js: reveals switched off in its settings block. */
+html.fi-no-reveals .fi-reveal-lines,
+html.fi-no-reveals .fi-reveal,
+html.fi-no-reveals .story-card {
+	opacity: 1 !important;
+	clip-path: none !important;
+	transform: none !important;
+}
