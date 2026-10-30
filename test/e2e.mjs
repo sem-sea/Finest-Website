@@ -248,6 +248,10 @@ try {
   ok('settings: motion config reaches the page', pub.includes('"smoothScroll":false') && pub.includes('"progressBar":false') && pub.includes('"reveals":true'));
   ok('settings: WhatsApp number reaches the contact bar', pub.includes('wa.me/31699988877'));
 
+  const chk = await apiCall('POST', 'storage-check', {}, cookie);
+  ok('storage check: write/read/list/delete all pass', chk.status === 200 && chk.data.ok === true, JSON.stringify(chk.data.steps?.filter((x) => !x.ok)));
+  ok('storage check is admin-only', (await apiCall('POST', 'storage-check', {}, null)).status === 401);
+
   // --- users and roles ---
   await page.goto(B + '/admin#/users');
   await page.waitForSelector('text=Gebruiker toevoegen');

@@ -339,6 +339,13 @@ async function settingsView() {
       field('Link van “Inloggen” in het menu', textInput(s, 'loginUrl', { placeholder: 'https://…' }), '# = nog geen link')),
     h('div', { class: 'card' }, linkList(s.menu, 'Hoofdmenu (bovenaan)')),
     h('div', { class: 'card' }, linkList(s.footer.platform, 'Footer: kolom Platform'), h('hr'), linkList(s.footer.legal, 'Footer: juridische links'), field('Extra regel onderaan', textInput(s.footer, 'note', { max: 200 }))),
+    h('div', { class: 'card' }, h('h2', {}, 'Opslag en koppelingen'),
+      h('p', { class: 'muted small' }, 'Controleert of de opslag (Vercel Blob) schrijft, leest en verwijdert, en of de geheime sleutels zijn ingesteld.'),
+      h('button', { class: 'btn ghost', onclick: async (e) => {
+        const out = e.target.nextElementSibling; out.replaceChildren(h('p', { class: 'muted' }, 'Bezig…'));
+        try { const r = await api.post('storage-check'); out.replaceChildren(h('div', { class: 'notice ' + (r.ok ? 'ok' : 'err') }, r.ok ? 'Alles werkt.' : 'Er is iets mis.'), h('table', {}, h('tbody', {}, r.steps.map((x) => h('tr', {}, h('td', {}, x.ok ? '✓' : '✗'), h('td', {}, x.name), h('td', { class: 'muted small' }, x.detail), h('td', { class: 'muted small' }, x.ms + ' ms')))))); }
+        catch (err) { out.replaceChildren(errBox(err)); }
+      } }, 'Opslag controleren'), h('div', { style: { marginTop: '10px' } })),
     h('div', { class: 'card' }, h('h2', {}, 'Beweging en scrollen'),
       h('p', { class: 'muted small' }, 'Bezoekers die “beweging verminderen” hebben aangezet zien nooit animaties, wat je hier ook kiest.'),
       checkInput(s.motion, 'animations', 'Animaties aan (uit = alles staat meteen op zijn plek)'),
