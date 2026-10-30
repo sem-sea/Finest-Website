@@ -1,0 +1,70 @@
+{
+  "type": "page",
+  "slug": "over-ons",
+  "title": "Over ons",
+  "status": "published",
+  "seo": {
+    "title": "Over ons",
+    "description": "Marketing first. Technology powered. Human controlled. Maak kennis met het team achter The Finest Impact.",
+    "image": "/assets/img/og-image-v2.jpg"
+  },
+  "blocks": [
+    {
+      "type": "section",
+      "variant": "default",
+      "narrow": true,
+      "html": "<h1 class=\"fi-reveal-lines\">Marketing first. Technology powered. Human controlled.</h1>\n    <p>Marketing wordt steeds belangrijker, maar voor veel ondernemers ook steeds moeilijker om goed te organiseren. Er zijn meer kanalen, meer data, meer technologie en meer mogelijkheden dan ooit. Maar tijd en capaciteit groeien niet automatisch mee.</p>\n    <p>Met meer dan 20 jaar ervaring in marketing en ruime kennis van de optiekbranche kennen we die werkelijkheid van heel dichtbij. We weten hoe belangrijk merk, strategie, creativiteit en commercieel inzicht zijn. We weten ook hoe vaak goede marketing blijft liggen omdat de dagelijkse praktijk voorgaat.</p>\n    <p class=\"lead\"><strong>Daarom hebben we The Finest Impact ontwikkeld.</strong></p>"
+    },
+    {
+      "type": "section",
+      "variant": "dark",
+      "narrow": true,
+      "html": "<h2>Marketing expertise en technologie horen bij elkaar</h2>\n    <p>Technologie kan veel, maar zonder richting, context en commercieel inzicht ontstaat vooral meer output. Daar geloven wij niet in.</p>\n    <p>Wij geloven in marketing die consistent is en klopt. Marketing die past bij je merk. Marketing die inspeelt op wat klanten nodig hebben. Marketing die zichtbaar maakt waar je voor staat. En marketing die uiteindelijk écht iets moet opleveren, namelijk sales.</p>\n    <p>Daarom combineren we menselijke expertise met technologie. De mens bepaalt de strategie, bewaakt de kwaliteit en maakt de keuzes. The Finest Impact zorgt voor snelheid, structuur en uitvoeringskracht. Samen ontstaat marketing die efficiënt en consistent wordt en zorgt voor groei.</p>\n    <p class=\"lead\"><strong>Own your spotlight.</strong></p>\n    <a class=\"btn btn--outline\" href=\"mailto:info@thefinestimpact.com\">Maak kennis met The Finest Impact</a>"
+    },
+    {
+      "type": "team",
+      "heading": "Ontmoet ons team",
+      "intro": "De mensen achter The Finest Impact.",
+      "members": [
+        {
+          "name": "Karin Boon",
+          "role": "Co-founder & Head of Growth",
+          "phone": "+31 6 48 46 99 24",
+          "email": "info@thefinestimpact.com",
+          "linkedin": "https://www.linkedin.com/in/karinboon/",
+          "photo": "/assets/img/team/karin.jpg",
+          "alt": "Karin Boon"
+        },
+        {
+          "name": "Manon van Gasteren",
+          "role": "Co-founder & Head of Marketing",
+          "phone": "+31 6 22 80 82 36",
+          "email": "info@thefinestimpact.com",
+          "linkedin": "https://www.linkedin.com/in/manonvangasteren/",
+          "photo": "/assets/img/team/manon.jpg",
+          "alt": "Manon van Gasteren"
+        },
+        {
+          "name": "Ben Verschuur",
+          "role": "Co-founder & Head of Technology",
+          "phone": "+31 6 13 01 32 66",
+          "email": "info@thefinestimpact.com",
+          "linkedin": "https://www.linkedin.com/in/benverschuur/",
+          "photo": "/assets/img/team/ben.jpg",
+          "alt": "Ben Verschuur"
+        },
+        {
+          "name": "Bo Seerden",
+          "role": "Co-founder & Head of Engineering",
+          "phone": "+31 6 19 25 11 93",
+          "email": "info@thefinestimpact.com",
+          "linkedin": "https://www.linkedin.com/in/boseerden/",
+          "photo": "/assets/img/team/bo.jpg",
+          "alt": "Bo Seerden"
+        }
+      ]
+    }
+  ],
+  "createdAt": "2026-08-06T09:00:00.000Z",
+  "updatedAt": "2026-08-06T09:00:00.000Z"
+}

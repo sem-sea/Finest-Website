@@ -1,0 +1,23 @@
+{
+  "type": "story",
+  "slug": "zo-breng-je-een-nieuwe-collectie-in-drie-weken-onder-de-aandacht",
+  "title": "Zo breng je een nieuwe collectie in drie weken onder de aandacht",
+  "status": "published",
+  "excerpt": "Dit verhaal volgt binnenkort.",
+  "category": "Collecties",
+  "author": "Karin Boon",
+  "date": "2026-08-04T09:00:00.000Z",
+  "image": {
+    "src": "/assets/img/photo-1.jpg",
+    "card": "",
+    "alt": ""
+  },
+  "html": "<p>Dit verhaal volgt binnenkort. Pas deze tekst aan of verwijder het verhaal in het CMS.</p>",
+  "seo": {
+    "title": "",
+    "description": "",
+    "image": ""
+  },
+  "createdAt": "2026-08-04T09:00:00.000Z",
+  "updatedAt": "2026-08-04T09:00:00.000Z"
+}

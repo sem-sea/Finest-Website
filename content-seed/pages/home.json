@@ -1,0 +1,143 @@
+{
+  "type": "page",
+  "slug": "home",
+  "title": "Home",
+  "status": "published",
+  "seo": {
+    "title": "",
+    "description": "The Finest Impact is een compleet marketingteam in één platform voor onafhankelijke opticiens.",
+    "image": "/assets/img/og-image-v2.jpg"
+  },
+  "blocks": [
+    {
+      "type": "hero",
+      "image": "/assets/img/photo-1.jpg",
+      "alt": "The Finest Impact — portretfotografie",
+      "eyebrow": "Own your spotlight",
+      "title": "Maximale marketingkracht. Optimale zorg.",
+      "lead": "The Finest Impact is een compleet marketingteam in één platform. Marketing voor jouw merk die klaar is voor de toekomst.",
+      "buttonLabel": "Plan een kennismaking",
+      "buttonUrl": "/contact"
+    },
+    {
+      "type": "explainer",
+      "variant": "default",
+      "reverse": false,
+      "scene": "stats",
+      "html": "<p>Meer zichtbaarheid. Meer continuïteit. Meer commerciële impact.</p>\n      <p>Van strategie en campagnes tot content, social media, e-mail, vindbaarheid en concurrentieanalyse. Het marketingteam is gepersonaliseerd voor jouw bedrijf en werkt samen vanuit jouw merk, jouw klanten en jouw commerciële doelen. Jij bepaalt de richting en houdt altijd de controle. De agents doen het uitvoerende werk.</p>\n      <p>Zo houd jij meer tijd over voor waar je écht goed in bent: klanten adviseren, brillen verkopen en de beste oogzorg bieden.</p>\n      <p class=\"lead\"><strong>The Finest Impact laat je marketing presteren.</strong></p>"
+    },
+    {
+      "type": "explainer",
+      "variant": "dark",
+      "reverse": true,
+      "scene": "mess",
+      "html": "<h2 class=\"fi-reveal-lines\">Als opticien ligt je aandacht in de winkel</h2>\n      <p>Bij je klanten, je collectie, je team en de oogzorg die je biedt. Toch vraagt marketing iedere week opnieuw om aandacht.</p>\n      <p>Een nieuwe brillencollectie die onder de aandacht moet worden gebracht. Social media die bijgehouden moet worden. Een nieuwsbrief die nog verstuurd moet worden. Campagnes die op tijd moeten starten. En natuurlijk wil je die klant regelmatig terugbrengen naar de winkel.</p>\n      <p>In de praktijk ligt dat werk vaak bij één persoon die marketing naast alle andere werkzaamheden doet. Of verschillende marketingwerkzaamheden worden verdeeld over bureaus, freelancers en losse tools.</p>\n      <p>Voor je het weet wordt marketing iets wat gebeurt als er tijd over is en is de consistentie ver te zoeken. Vaak ontbreken niet de ideeën, maar de tijd en de capaciteit.</p>\n      <p class=\"lead\"><strong>En precies daar begint The Finest Impact.</strong></p>\n      <a class=\"btn btn--outline\" href=\"/diensten\">Ontdek hoe het werkt</a>"
+    },
+    {
+      "type": "explainer",
+      "variant": "default",
+      "reverse": false,
+      "scene": "hub",
+      "html": "<h2>Alles wat je nodig hebt om marketing van de toekomst te runnen</h2>\n      <p>The Finest Impact brengt jouw marketing samen in één centrale omgeving; één dashboard waar jij iedere dag op kan inloggen om te zien wat er speelt. Misschien moet je iets doen, iets activeren of goedkeuren. Onder het genot van een kopje koffie heb jij het zo op orde en kan je focus naar de winkel.</p>\n      <p>Strategie, campagnes, content, social media, e-mailmarketing, vindbaarheid, marktinzichten en analyse werken niet langer los van elkaar, maar vanuit dezelfde kennis over jouw bedrijf, je concurrentie en je groeikansen. Goede marketing begint niet bij een losse post, advertentie of nieuwsbrief. Het begint bij weten wie je bent, wie je klanten zijn en wat je wilt bereiken. Daarom richten we The Finest Impact in rondom het DNA van jouw bedrijf.</p>\n      <p>Daardoor hoef je niet iedere campagne opnieuw vanaf nul te bedenken en hoef je niet steeds verschillende partijen te briefen. Een volledige campagneplanning, opgebouwd vanuit jouw doelstellingen, met 360 graden materialen voor de juiste kanalen, in een oogopslag en gemakkelijk aan te bewerken wanneer jij dat nodig vindt.</p>\n      <p class=\"lead\">Je marketing krijgt één lijn en één duidelijke richting.<br /><strong>Meer marketingkracht. Zonder een groter marketingteam.</strong></p>"
+    },
+    {
+      "type": "photo",
+      "src": "/assets/img/photo-2.jpg",
+      "alt": "The Finest Impact — portretfotografie"
+    },
+    {
+      "type": "explainer",
+      "variant": "klei",
+      "reverse": true,
+      "scene": "balance",
+      "html": "<h2>Speciaal voor opticiens</h2>\n      <p class=\"lead\">Jij bent opticien en je wilt gewoon resultaat. Meer verkopen.</p>\n      <p>En dat snappen we. The Finest Impact is ontwikkeld voor opticiens die marketing professioneel willen aanpakken. Het doel is dat marketing consistent bijdraagt aan je bedrijf.</p>\n      <p>Jij kent je klanten. Jij weet welke collectie belangrijk is. Jij weet wat er in je winkel speelt. Jij bepaalt waar je naartoe wilt.</p>\n      <p>Wij zorgen samen met ons platform dat die kennis wordt vertaald naar sterke marketing. Menselijke expertise bepaalt de strategie en bewaakt de kwaliteit. Slimme AI-technologie zorgt voor snelheid, capaciteit en uitvoering.</p>\n      <p class=\"lead\"><strong>Jij brengt de kennis van je bedrijf. The Finest Impact brengt de marketingkracht.</strong></p>"
+    },
+    {
+      "type": "faq",
+      "heading": "Veelgestelde vragen",
+      "items": [
+        {
+          "q": "Wat is The Finest Impact?",
+          "a": "The Finest Impact is een compleet marketingteam in één platform, ontwikkeld voor de optiek. Het helpt je bij alles wat nodig is om je marketing structureel goed te organiseren. Van strategie en campagnes tot content, social media, e-mailmarketing, vindbaarheid, marktinzichten en analyse. Alles vertrekt vanuit jouw bedrijf, jouw klanten en jouw commerciële doelen. Zo krijg je meer marketingkracht, zonder zelf een volledige marketingafdeling op te bouwen."
+        },
+        {
+          "q": "Voor wie is The Finest Impact bedoeld?",
+          "a": "Voor zelfstandige opticiens die marketing belangrijk vinden, maar merken dat het er in de praktijk te vaak bij wordt gedaan. Misschien ligt marketing nu bij jou als ondernemer. Misschien doet een medewerker het erbij. Of werk je met verschillende bureaus en freelancers. The Finest Impact brengt daar meer structuur, snelheid en samenhang in: één platform waarin jouw gehele marketingteam samenkomt."
+        },
+        {
+          "q": "Wat kan The Finest Impact voor mijn optiekbedrijf doen?",
+          "a": "The Finest Impact helpt je om vooruit te kijken, campagnes op tijd te plannen, regelmatig zichtbaar te zijn, klanten opnieuw te activeren en beter gebruik te maken van kansen in je markt. Niet meer iedere week opnieuw bedenken wat je moet posten of welke actie je moet verzinnen. Je werkt vanuit een duidelijke marketinglijn."
+        },
+        {
+          "q": "Is The Finest Impact alleen bedoeld voor content en social media?",
+          "a": "Nee. Content is maar één onderdeel van marketing. The Finest Impact helpt ook bij strategie, campagnes, klantactivatie, e-mailmarketing, lokale zichtbaarheid, vindbaarheid in Google en AI, marktontwikkelingen en het analyseren van wat werkt."
+        },
+        {
+          "q": "Werkt The Finest Impact met AI?",
+          "a": "Ja, AI speelt een belangrijke rol. Maar The Finest Impact is niet ontwikkeld om simpelweg zoveel mogelijk content te produceren. AI wordt ingezet om sneller te kunnen onderzoeken, plannen, maken, analyseren en verbeteren. Jouw bedrijf, klanten en commerciële doelen blijven altijd het uitgangspunt."
+        },
+        {
+          "q": "Krijg ik dan van die typische AI-teksten?",
+          "a": "Dat willen we juist voorkomen. The Finest Impact leert jouw merk, doelgroep, tone of voice, aanbod en manier van communiceren kennen. Daardoor ontstaat marketing die beter bij jouw merk past en niet klinkt alsof dezelfde tekst ook voor iedere andere opticien geschreven had kunnen zijn."
+        },
+        {
+          "q": "Heb ik nog wel zelf controle over mijn marketing?",
+          "a": "Altijd. The Finest Impact is geen automatische marketingmachine die zelfstandig van alles publiceert. Zie het als een extra marketingteam naast je. Het platform helpt je denken, voorbereiden, maken en verbeteren. Jij bepaalt uiteindelijk wat past bij jouw bedrijf en wat naar buiten gaat."
+        },
+        {
+          "q": "Kan één medewerker hiermee werken?",
+          "a": "Ja. Dat is juist één van de uitgangspunten. Je hoeft geen groot marketingteam of senior marketeer in dienst te hebben. Ook een ondernemer, marketingmedewerker of communicatiemedewerker kan met The Finest Impact werken. De kennis en slagkracht die normaal over meerdere specialisten verdeeld is, wordt veel toegankelijker."
+        },
+        {
+          "q": "Vervangt The Finest Impact mijn marketingbureau of marketeer?",
+          "a": "Dat hoeft niet. Heb je een goede marketeer of een bureau waar je prettig mee werkt, dan kan The Finest Impact juist helpen om meer gedaan te krijgen. Tegelijkertijd kan het platform werkzaamheden overnemen die nu verspreid liggen over verschillende bureaus, freelancers en tools. Je bepaalt dus zelf wat je intern wilt organiseren en waar je externe expertise voor wilt blijven inzetten."
+        },
+        {
+          "q": "Hoe weet The Finest Impact wat bij mijn bedrijf past?",
+          "a": "Daar begint onze samenwerking mee. Voordat we The Finest Impact voor je inrichten, kijken we naar je bedrijf, positionering, klanten, aanbod, huidige marketing en commerciële ambities. Wat staat al goed? Waar liggen kansen? Wat ontbreekt nog? Pas daarna richten we The Finest Impact in rondom jouw organisatie. Geen standaardpakket waarin iedere opticien hetzelfde krijgt."
+        },
+        {
+          "q": "Hoe starten we?",
+          "a": "We beginnen met een Strategische Marketing Sessie. Daarin kijken we samen naar je huidige marketing, doelgroep, positionering, zichtbaarheid en commerciële doelen. Vervolgens bepalen we jouw belangrijke data en marketingstrategie, wat eerst aangescherpt moet worden en hoe The Finest Impact jouw marketing het beste kan ondersteunen. Daaruit ontstaat een duidelijke strategische richting voor de komende periode."
+        },
+        {
+          "q": "Kan The Finest Impact samenwerken met systemen die we al gebruiken?",
+          "a": "Waar dat relevant is, kan The Finest Impact samenwerken met bestaande marketing- en bedrijfssystemen. Denk aan je kassasysteem, meta, nieuwsbrief e.d. Welke koppelingen zinvol zijn, verschilt per organisatie. Ons uitgangspunt is simpel: we koppelen niet omdat het technisch kan, maar alleen wanneer het jouw marketing daadwerkelijk beter, slimmer of makkelijker maakt."
+        },
+        {
+          "q": "Is onze informatie veilig?",
+          "a": "Daar besteden we vanaf het begin veel aandacht aan. We kijken zorgvuldig naar welke informatie nodig is, wie toegang heeft en hoe bedrijfs- en klantinformatie wordt gebruikt. Daarbij geldt altijd: niet méér data gebruiken dan nodig is. Zeker wanneer systemen of klantgegevens met elkaar worden verbonden, moeten veiligheid en privacy goed geregeld zijn."
+        },
+        {
+          "q": "Wat levert The Finest Impact mij uiteindelijk op?",
+          "a": "Niet simpelweg meer marketing. Maar betere marketing. Meer structuur. Meer continuïteit. Snellere uitvoering. Sterkere campagnes. Meer zichtbaarheid. Meer inzicht in wat werkt. Meer sales. En vooral: minder tijd kwijt zijn aan het organiseren van marketing. Zodat jij je kunt richten op waar je uiteindelijk het verschil maakt: je klanten, je winkel, je collectie, je sales en goede oogzorg."
+        },
+        {
+          "q": "Wat kost The Finest Impact?",
+          "a": "The Finest Impact wordt ingericht rondom jouw organisatie. De investering hangt daarom af van waar je nu staat en wat nodig is om je marketing goed te organiseren. Tijdens een kennismaking kijken we eerst naar je huidige situatie en ambities. Daarna kunnen we heel concreet aangeven welke aanpak bij jouw organisatie past."
+        },
+        {
+          "q": "Kan ik eerst zien hoe het werkt?",
+          "a": "Natuurlijk. Tijdens een demo laten we je zien hoe The Finest Impact werkt aan de hand van herkenbare situaties uit de optiek. Geen technische softwaretour, maar vooral: wat betekent dit voor jouw dagelijkse marketing?"
+        }
+      ],
+      "buttonLabel": "Plan een demo",
+      "buttonUrl": "/contact"
+    },
+    {
+      "type": "cta",
+      "eyebrow": "Own your spotlight",
+      "heading": "Professionele marketing vraagt geen volledige marketingafdeling",
+      "html": "<p class=\"lead\">Het vraagt marketing van de toekomst.</p>\n    <p>The Finest Impact combineert jouw kennis van je bedrijf met marketingexpertise en AI-technologie die het zware werk voor je doet. Zodat je zichtbaar blijft, sneller commerciële kansen benut en meer uit je marketing haalt. Terwijl jij kunt blijven doen waar jij het verschil maakt.</p>\n    <p class=\"lead\"><strong>The Finest Impact laat je marketing presteren.</strong></p>\n    <a class=\"btn btn--outline\" href=\"/contact\">Plan een kennismaking</a>",
+      "lockup": true
+    },
+    {
+      "type": "stories",
+      "heading": "Optiek Stories",
+      "buttonLabel": "Alle stories",
+      "buttonUrl": "/klantverhalen"
+    }
+  ],
+  "createdAt": "2026-08-06T09:00:00.000Z",
+  "updatedAt": "2026-08-06T09:00:00.000Z"
+}

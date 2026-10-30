@@ -1,0 +1,35 @@
+{
+  "siteName": "The Finest Impact",
+  "wordmark": "the finest impact",
+  "tagline": "Marketing first. Technology powered. Human controlled.",
+  "siteUrl": "https://finest-website.vercel.app",
+  "defaultSeo": {
+    "description": "The Finest Impact is een compleet marketingteam in één platform voor onafhankelijke opticiens.",
+    "image": "/assets/img/og-image-v2.jpg"
+  },
+  "contact": { "email": "info@thefinestimpact.com", "notifyEmail": "info@thefinestimpact.com" },
+  "whatsapp": { "number": "31648469924", "message": "Hallo The Finest Impact, ik heb een vraag." },
+  "loginUrl": "#",
+  "menu": [
+    { "label": "Diensten", "url": "/diensten" },
+    { "label": "Over ons", "url": "/over-ons" },
+    { "label": "Klantverhalen", "url": "/klantverhalen" },
+    { "label": "Nieuws", "url": "/nieuws" },
+    { "label": "Contact", "url": "/contact" }
+  ],
+  "footer": {
+    "platform": [
+      { "label": "Diensten", "url": "/diensten" },
+      { "label": "Over ons", "url": "/over-ons" },
+      { "label": "Klantverhalen", "url": "/klantverhalen" },
+      { "label": "Nieuws", "url": "/nieuws" },
+      { "label": "Contact", "url": "/contact" }
+    ],
+    "legal": [
+      { "label": "Algemene voorwaarden", "url": "/algemene-voorwaarden" },
+      { "label": "Privacyverklaring", "url": "/privacyverklaring" }
+    ],
+    "note": ""
+  },
+  "motion": { "animations": true, "smoothScroll": true, "smoothDuration": 1.1, "reveals": true, "pinnedRail": true, "progressBar": true }
+}

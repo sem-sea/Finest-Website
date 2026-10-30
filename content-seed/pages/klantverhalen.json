@@ -1,0 +1,27 @@
+{
+  "type": "page",
+  "slug": "klantverhalen",
+  "title": "Klantverhalen",
+  "status": "published",
+  "seo": {
+    "title": "Klantverhalen",
+    "description": "Wat gebeurt er wanneer marketing wél structureel wordt? Klantverhalen van opticiens die met The Finest Impact werken.",
+    "image": "/assets/img/og-image-v2.jpg"
+  },
+  "blocks": [
+    {
+      "type": "section",
+      "variant": "default",
+      "narrow": true,
+      "html": "<h1 class=\"fi-reveal-lines\">Wat gebeurt er wanneer marketing wél structureel wordt?</h1>\n    <p class=\"lead\">Daar willen we niet alleen over vertellen. We willen het laten zien.</p>\n    <p>In onze klantverhalen delen we hoe opticiens The Finest Impact gebruiken, wat er verandert in hun dagelijkse marketing en welk resultaat dat oplevert. Van tijdsbesparing en meer zichtbaarheid tot betere campagnes, meer klantactivatie en commerciële groei.</p>"
+    },
+    {
+      "type": "list",
+      "collection": "stories",
+      "heading": "Alle klantverhalen",
+      "emptyText": "Nog geen klantverhalen gepubliceerd."
+    }
+  ],
+  "createdAt": "2026-08-06T09:00:00.000Z",
+  "updatedAt": "2026-08-06T09:00:00.000Z"
+}

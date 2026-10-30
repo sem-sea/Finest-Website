@@ -1,0 +1,23 @@
+{
+  "type": "page",
+  "slug": "contact",
+  "title": "Contact",
+  "status": "published",
+  "seo": {
+    "title": "Contact",
+    "description": "Plan een kennismaking met The Finest Impact.",
+    "image": "/assets/img/og-image-v2.jpg"
+  },
+  "blocks": [
+    {
+      "type": "contact",
+      "heading": "Plan een kennismaking",
+      "lead": "Tijdens een kennismaking kijken we eerst naar je huidige situatie en ambities. Daarna kunnen we heel concreet aangeven welke aanpak bij jouw organisatie past.",
+      "formTitle": "Stuur een bericht",
+      "directTitle": "Direct contact",
+      "directHtml": "<p><a href=\"mailto:info@thefinestimpact.com\">info@thefinestimpact.com</a></p>\n<p>Karin Boon, Head of Growth<br />+31 6 48 46 99 24</p>\n<p>Manon van Gasteren, Head of Marketing<br />+31 6 22 80 82 36</p>"
+    }
+  ],
+  "createdAt": "2026-08-06T09:00:00.000Z",
+  "updatedAt": "2026-08-06T09:00:00.000Z"
+}

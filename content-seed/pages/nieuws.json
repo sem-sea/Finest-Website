@@ -1,0 +1,27 @@
+{
+  "type": "page",
+  "slug": "nieuws",
+  "title": "Nieuws",
+  "status": "published",
+  "seo": {
+    "title": "The Finest News",
+    "description": "Blijf voor op wat er in de optiek gebeurt. The Finest News volgt trends, merken en ontwikkelingen in de optiekbranche.",
+    "image": "/assets/img/og-image-v2.jpg"
+  },
+  "blocks": [
+    {
+      "type": "section",
+      "variant": "default",
+      "narrow": true,
+      "html": "<h1 class=\"fi-reveal-lines\">Blijf voor op wat er in de optiek gebeurt</h1>\n    <p>De optiekwereld verandert snel. Nieuwe merken komen op, retailconcepten veranderen, technologie ontwikkelt zich en consumenten verwachten steeds meer. The Finest News volgt wat er gebeurt in Nederland én daarbuiten. Van nieuwe eyewear merken en opvallende winkels tot internationale trends, technologie, AI, events, marketing en ontwikkelingen in de markt.</p>\n    <p>Maar we brengen niet alleen het nieuws. We kijken vooral naar de vraag: wat betekent dit voor jou als opticien?</p>\n    <ul>\n      <li>Welke ontwikkelingen zijn interessant?</li>\n      <li>Welke trends moet je in de gaten houden?</li>\n      <li>Waar liggen kansen voor jouw winkel, merk of marketing?</li>\n    </ul>\n    <p class=\"lead\"><strong>The Finest News. Voor opticiens die niet willen volgen, maar vooruit willen kijken.</strong></p>"
+    },
+    {
+      "type": "list",
+      "collection": "posts",
+      "heading": "Alle artikelen",
+      "emptyText": "Nog geen artikelen gepubliceerd."
+    }
+  ],
+  "createdAt": "2026-08-06T09:00:00.000Z",
+  "updatedAt": "2026-08-06T09:00:00.000Z"
+}

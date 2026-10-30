@@ -1,2 +1,7 @@
 # Release zips live in git only; they are not part of the website.
 *.zip
+legacy-static/
+dev/
+test/
+tools/
+.dev-data/

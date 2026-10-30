@@ -1,0 +1,21 @@
+{
+  "type": "page",
+  "slug": "algemene-voorwaarden",
+  "title": "Algemene voorwaarden",
+  "status": "published",
+  "seo": {
+    "title": "Algemene Voorwaarden",
+    "description": "Algemene voorwaarden van The Finest Impact (concept).",
+    "image": "/assets/img/og-image-v2.jpg"
+  },
+  "blocks": [
+    {
+      "type": "section",
+      "variant": "default",
+      "narrow": true,
+      "html": "<p class=\"notice\"><strong>Concept: nog niet juridisch gecontroleerd.</strong> Deze pagina is een startpunt. De bedrijfsgegevens zijn nog niet ingevuld ([AAN TE VULLEN]); vul ze in door deze tekst aan te passen in het CMS. Laat de tekst controleren door een jurist voordat de site live gaat.</p>\n    <h1>Algemene Voorwaarden</h1>\n    <p>Deze algemene voorwaarden zijn van toepassing op alle overeenkomsten tussen The Finest Impact (\"wij\", \"ons\") en de opdrachtgever (\"jij\", \"je\") met betrekking tot het gebruik van het marketingplatform en de bijbehorende dienstverlening.</p>\n    <h2>1. Wie we zijn</h2>\n    <p><strong>The Finest Impact</strong><br />KvK-nummer: [AAN TE VULLEN]<br />Btw-nummer: [AAN TE VULLEN]<br />Vestigingsadres: [AAN TE VULLEN]<br />E-mail: <a href=\"mailto:info@thefinestimpact.com\">info@thefinestimpact.com</a></p>\n    <h2>2. De dienst</h2>\n    <p>The Finest Impact is een marketingplatform voor onafhankelijke opticiens. De precieze omvang van de dienstverlening (strategie, content, campagnes, koppelingen met bestaande systemen) wordt per klant vastgesteld tijdens de kennismaking en strategische marketing sessie, en vastgelegd in een aparte overeenkomst of offerte.</p>\n    <h2>3. Menselijke controle over gepubliceerde content</h2>\n    <p>The Finest Impact publiceert niet zelfstandig namens de opdrachtgever. De opdrachtgever behoudt te allen tijde de controle over welke content, campagnes en communicatie daadwerkelijk naar buiten gaan. Door content goed te keuren of te laten publiceren, blijf je er zelf verantwoordelijk voor dat die correct is en voldoet aan de wet; wij controleren content niet op juridische juistheid.</p>\n    <h2>4. Looptijd en opzegging</h2>\n    <p>De overeenkomst gaat in op de datum in de offerte of overeenkomst en loopt voor de daarin genoemde initiële looptijd. Staat er geen looptijd in de offerte, dan is de initiële looptijd twaalf maanden.</p>\n    <p>Na de initiële looptijd wordt de overeenkomst telkens stilzwijgend verlengd met dezelfde periode, tenzij een van ons uiterlijk één maand vóór het einde van de lopende periode schriftelijk heeft opgezegd. Opzeggen per e-mail volstaat. Tussentijds opzeggen is niet mogelijk, behalve als een van ons ernstig tekortschiet en dat na een schriftelijke ingebrekestelling niet binnen een redelijke termijn herstelt.</p>\n    <h2>5. Aansprakelijkheid</h2>\n    <p>Onze totale aansprakelijkheid voor schade die voortvloeit uit of verband houdt met de overeenkomst is beperkt tot directe schade, en tot het bedrag dat je ons in de twaalf maanden vóór de gebeurtenis voor de dienst hebt betaald.</p>\n    <p>Wij zijn niet aansprakelijk voor indirecte schade, zoals gederfde winst, gemiste omzet, gemiste besparingen of reputatieschade. Deze beperkingen gelden niet bij opzet of bewuste roekeloosheid van ons of onze leidinggevenden, en niet voor zover de wet aansprakelijkheid niet toestaat uit te sluiten. Meld schade zo snel mogelijk schriftelijk, in elk geval binnen een redelijke termijn nadat je die hebt ontdekt.</p>\n    <h2>6. Toepasselijk recht en geschillen</h2>\n    <p>Op deze voorwaarden is Nederlands recht van toepassing. Geschillen leggen we voor aan de bevoegde rechter in het arrondissement waar wij gevestigd zijn, nadat we eerst hebben geprobeerd er samen uit te komen.</p>"
+    }
+  ],
+  "createdAt": "2026-08-06T09:00:00.000Z",
+  "updatedAt": "2026-08-06T09:00:00.000Z"
+}

@@ -1,0 +1,23 @@
+{
+  "type": "story",
+  "slug": "oogzorg-vertellen-zonder-te-verkopen",
+  "title": "Oogzorg vertellen zonder te verkopen: vijf formules die werken",
+  "status": "published",
+  "excerpt": "Dit verhaal volgt binnenkort.",
+  "category": "Oogzorg",
+  "author": "Karin Boon",
+  "date": "2026-08-01T09:00:00.000Z",
+  "image": {
+    "src": "/assets/img/photo-2.jpg",
+    "card": "",
+    "alt": ""
+  },
+  "html": "<p>Dit verhaal volgt binnenkort. Pas deze tekst aan of verwijder het verhaal in het CMS.</p>",
+  "seo": {
+    "title": "",
+    "description": "",
+    "image": ""
+  },
+  "createdAt": "2026-08-01T09:00:00.000Z",
+  "updatedAt": "2026-08-01T09:00:00.000Z"
+}

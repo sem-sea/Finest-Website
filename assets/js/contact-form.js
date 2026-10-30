@@ -1,17 +1,20 @@
-/* Demo contact form: same states and markup contract as the WordPress form
-   (form[data-status] = init | submitting | invalid | sent), but nothing is
-   posted anywhere. After "sending" it says so and offers mail/WhatsApp. */
+/* Contact form: validates in the browser (same states and markup contract as
+   before: form[data-status] = init | submitting | invalid | sent | error), then
+   posts the message to /api/contact. */
 (function () {
 	'use strict';
 	var form = document.getElementById('contact-form');
 	if (!form) { return; }
 
+	var loaded = Date.now();
 	var out = form.querySelector('.wpcf7-response-output');
 	var fields = {
 		name: form.querySelector('#tfi-name'),
 		email: form.querySelector('#tfi-email'),
+		company: form.querySelector('#tfi-company'),
 		message: form.querySelector('#tfi-message'),
-		consent: form.querySelector('#tfi-consent')
+		consent: form.querySelector('#tfi-consent'),
+		website: form.querySelector('[name="website"]')
 	};
 
 	function clearErrors() {
@@ -47,6 +50,13 @@
 		return bad;
 	}
 
+	function fail(text) {
+		form.removeAttribute('aria-busy');
+		form.setAttribute('data-status', 'invalid');
+		out.textContent = text;
+		focusEl(out);
+	}
+
 	form.addEventListener('submit', function (e) {
 		e.preventDefault();
 		if (form.getAttribute('data-status') === 'submitting') { return; }
@@ -60,16 +70,32 @@
 		out.textContent = '';
 		form.setAttribute('data-status', 'submitting');
 		form.setAttribute('aria-busy', 'true');
-		window.setTimeout(function () {
-			var name = fields.name.value.trim(), body = fields.message.value.trim();
-			var text = 'Hallo The Finest Impact, ik ben ' + name + '. ' + body;
-			document.getElementById('demo-mail').href = 'mailto:info@thefinestimpact.com?subject=' +
-				encodeURIComponent('Kennismaking aangevraagd door ' + name) + '&body=' + encodeURIComponent(body + '\n\n' + name + ' <' + fields.email.value.trim() + '>');
-			document.getElementById('demo-wa').href = 'https://wa.me/31648469924?text=' + encodeURIComponent(text);
+
+		fetch(form.getAttribute('data-endpoint') || '/api/contact', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				name: fields.name.value.trim(),
+				email: fields.email.value.trim(),
+				company: fields.company.value.trim(),
+				message: fields.message.value.trim(),
+				consent: fields.consent.checked,
+				website: fields.website ? fields.website.value : '',
+				elapsed: Date.now() - loaded
+			})
+		}).then(function (r) {
+			return r.json().catch(function () { return {}; }).then(function (data) { return { ok: r.ok, data: data }; });
+		}).then(function (res) {
+			if (!res.ok) {
+				fail((res.data && res.data.error) || 'Het versturen is niet gelukt. Probeer het later opnieuw of mail ons direct.');
+				return;
+			}
 			form.removeAttribute('aria-busy');
 			form.setAttribute('data-status', 'sent');
 			focusEl(form.querySelector('.tfi-success'));
-		}, 1400);
+		}).catch(function () {
+			fail('Het versturen is niet gelukt. Controleer je verbinding en probeer het opnieuw.');
+		});
 	});
 
 	/* Fix errors as you type */
