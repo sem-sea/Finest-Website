@@ -116,12 +116,15 @@ async function shell() {
 
 // ---------- dashboard ----------
 async function dashboard() {
+  let teaserOn = false;
+  try { teaserOn = !!(await api.get('settings')).settings.teaser?.enabled; } catch {}
   const [p, n, s, m, sub] = await Promise.all(['pages', 'posts', 'stories'].map((c) => api.get('docs', { col: c })).concat([api.get('media'), api.get('submissions')]));
   const card = (label, value, href) => h('a', { class: 'card', href, style: { textDecoration: 'none', display: 'block' } }, h('div', { class: 'muted small' }, label), h('div', { style: { fontSize: '30px', fontWeight: 300 } }, String(value)));
   const unread = sub.items.filter((x) => !x.read).length;
   const recent = [...p.items.map((i) => ({ ...i, col: 'pages' })), ...n.items.map((i) => ({ ...i, col: 'posts' })), ...s.items.map((i) => ({ ...i, col: 'stories' }))].sort((a, b) => String(b.updatedAt).localeCompare(String(a.updatedAt))).slice(0, 8);
   return h('div', {},
     h('div', { class: 'topbar' }, h('h1', {}, `Welkom, ${state.user.name}`)),
+    teaserOn ? h('div', { class: 'notice err' }, h('strong', {}, 'De website is dicht voor bezoekers: ze zien de teaserpagina. '), isAdmin() ? h('a', { href: '#/settings' }, 'Naar instellingen om hem uit te zetten') : 'Vraag een beheerder om hem uit te zetten.') : null,
     state.storage === 'none' ? h('div', { class: 'notice warn' }, 'Er is nog geen opslag gekoppeld: de site toont de standaardinhoud en je kunt nog niets opslaan.') : null,
     h('div', { class: 'grid2', style: { gridTemplateColumns: 'repeat(auto-fit,minmax(170px,1fr))', gap: '14px' } },
       card("Pagina's", p.items.length, '#/pages'), card('Nieuwsberichten', n.items.length, '#/posts'), card('Klantverhalen', s.items.length, '#/stories'), card("Foto's", m.items.length, '#/media'), card('Ongelezen berichten', unread, '#/inbox')),
@@ -312,6 +315,7 @@ async function inboxView(refreshUnread) {
 // ---------- settings ----------
 async function settingsView() {
   const s = (await api.get('settings')).settings;
+  const t = (s.teaser ||= { enabled: false, eyebrow: 'Own your spotlight', title: 'Binnenkort online', text: '', buttonLabel: '', buttonUrl: '', showEmail: true, showWhatsapp: true, previewKey: '' });
   s.defaultSeo ||= {}; s.contact ||= {}; s.whatsapp ||= {}; s.footer ||= { platform: [], legal: [] }; s.menu ||= []; s.motion ||= {};
   const linkList = (arr, title) => {
     const box = h('div');
@@ -324,11 +328,34 @@ async function settingsView() {
     draw();
     return box;
   };
+  const draw2 = () => {};
   const msg = h('div');
+  const linkBox = h('div');
+  const drawLink = () => linkBox.replaceChildren(t.previewKey
+    ? h('div', { class: 'notice ok' }, h('p', { style: { margin: '0 0 6px' } }, 'Geheime voorbeeldlink: hiermee zie je de echte site terwijl de teaser aan staat (ook voor een klant of collega). Ingelogd in het CMS zie je de echte site sowieso.'),
+      h('input', { type: 'text', readonly: true, value: `${location.origin}/?voorbeeld=${t.previewKey}`, onclick: (e) => e.target.select() }),
+      h('button', { type: 'button', class: 'btn ghost small', style: { marginTop: '6px' }, onclick: () => { t.regenerateKey = true; dirty.mark(); toast('Sla op om een nieuwe sleutel te krijgen. De oude link werkt dan niet meer.', 4500); } }, 'Nieuwe sleutel maken'))
+    : h('p', { class: 'muted small' }, 'Zodra je de teaser aanzet en opslaat, krijg je hier een geheime voorbeeldlink.'));
+  drawLink();
   return h('div', {},
     h('div', { class: 'topbar' }, h('h1', {}, 'Instellingen'), h('button', { class: 'btn', onclick: async () => {
-      try { await api.post('settings', s); dirty.clear(); msg.replaceChildren(h('div', { class: 'notice ok' }, 'Opgeslagen. Wijzigingen zijn binnen een minuut zichtbaar op de site.')); } catch (e) { msg.replaceChildren(errBox(e)); }
+      try {
+        const r = await api.post('settings', s);
+        t.previewKey = r.settings.teaser?.previewKey || ''; delete t.regenerateKey; drawLink(); dirty.clear();
+        msg.replaceChildren(h('div', { class: 'notice ok' }, t.enabled ? 'Opgeslagen. De website is nu dicht voor bezoekers (binnen een minuut overal actief).' : 'Opgeslagen. Wijzigingen zijn binnen een minuut zichtbaar op de site.'));
+      } catch (e) { msg.replaceChildren(errBox(e)); }
     } }, 'Opslaan')), msg,
+    h('div', { class: 'card', style: t.enabled ? { borderColor: '#b00020', borderWidth: '2px' } : {} }, h('h2', {}, 'Teaserpagina (website tijdelijk dicht)'),
+      h('p', { class: 'muted small' }, 'Aan = bezoekers zien alleen deze teaser (met de melding “tijdelijk niet beschikbaar” voor Google). Het CMS en jij als ingelogde gebruiker zien de echte site gewoon.'),
+      checkInput(t, 'enabled', 'Teaserpagina AAN (de rest van de website is dicht voor bezoekers)', { onChange: () => draw2() }),
+      h('div', { class: 'grid2' }, field('Kleine regel boven de kop', textInput(t, 'eyebrow', { max: 80 })), field('Kop', textInput(t, 'title', { max: 160 }))),
+      field('Tekst', areaInput(t, 'text', { rows: 3, max: 500 })),
+      h('div', { class: 'grid2' }, field('Extra knop: tekst (optioneel)', textInput(t, 'buttonLabel', { max: 60 })), field('Extra knop: link', textInput(t, 'buttonUrl', { placeholder: 'https://…' }))),
+      checkInput(t, 'showEmail', 'Toon het e-mailadres als knop'), checkInput(t, 'showWhatsapp', 'Toon de WhatsApp-knop'),
+      h('div', { class: 'row', style: { margin: '8px 0 12px' } }, h('button', { type: 'button', class: 'btn ghost', onclick: async () => {
+        try { const { html } = await api.post('preview', { col: 'teaser', doc: t }); modal('Voorbeeld teaserpagina', h('iframe', { sandbox: 'allow-scripts', srcdoc: html, title: 'Voorbeeld teaser' }), { wide: true }); } catch (e) { toast(e.message, 4000); }
+      } }, 'Voorbeeld teaserpagina')),
+      linkBox),
     h('div', { class: 'card' }, h('h2', {}, 'Site'),
       h('div', { class: 'grid2' }, field('Sitenaam', textInput(s, 'siteName', { max: 80 })), field('Woordmerk in de header', textInput(s, 'wordmark', { max: 60 })),
         field('Slogan (footer)', textInput(s, 'tagline', { max: 160 })), field('Adres van de site', textInput(s, 'siteUrl', { placeholder: 'https://www.jouwdomein.nl' }), 'Zonder slash aan het eind. Wordt gebruikt voor Google en delen.')),

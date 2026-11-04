@@ -50,7 +50,9 @@ export function createServer() {
       req.url = `/api/cms?${q.toString()}`;
       return handleCms(req, res);
     }
-    req.url = `/api/site?path=${encodeURIComponent(p.replace(/^\/+/, ''))}`;
+    const sq = new URLSearchParams(url.search);
+    sq.set('path', p.replace(/^\/+/, ''));
+    req.url = `/api/site?${sq.toString()}`;
     return handleSite(req, res);
   });
 }

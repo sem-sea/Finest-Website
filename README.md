@@ -23,7 +23,12 @@ Optioneel: `RESEND_API_KEY` (+ `CONTACT_FROM`) om contactberichten ook per e-mai
 ```
 npm i
 npm run dev      # http://127.0.0.1:3000 , opslag in .dev-data/
-npm test         # volledige end-to-end test (76 controles)
+npm test         # volledige end-to-end test (97 controles)
 ```
 `legacy-static/` bevat de oorspronkelijke handgemaakte pagina's (alleen ter referentie; niet gedeployed).
 Het WordPress-thema staat als zip in de root (`finest-impact-theme-v*.zip`).
+
+## Teaserpagina (website tijdelijk dicht)
+Instellingen → **Teaserpagina (website tijdelijk dicht)**. Aan = bezoekers zien alleen de teaser (HTTP 503, `Retry-After`, noindex, nooit gecachet).
+Ingelogde CMS-gebruikers en wie de geheime voorbeeldlink (`/?voorbeeld=…`) heeft, zien de echte site. `/admin`, `/api`, `/assets`, `/media` en `robots.txt` blijven bereikbaar.
+In het WordPress-thema: Weergave → Teaserpagina (zelfde gedrag).

@@ -248,6 +248,49 @@ try {
   ok('settings: motion config reaches the page', pub.includes('"smoothScroll":false') && pub.includes('"progressBar":false') && pub.includes('"reveals":true'));
   ok('settings: WhatsApp number reaches the contact bar', pub.includes('wa.me/31699988877'));
 
+  // --- teaser / coming-soon mode ---
+  await page.goto(B + '/admin#/settings');
+  await page.waitForSelector('text=Teaserpagina (website tijdelijk dicht)');
+  await page.locator('.card:has-text("Teaserpagina") input[type=text]').nth(1).fill('Binnenkort <b>online</b> & klaar');
+  await page.locator('.card:has-text("Teaserpagina (website") label.check:has-text("Teaserpagina AAN") input').check();
+  await page.click('.topbar >> text=Opslaan');
+  await page.waitForSelector('text=De website is nu dicht voor bezoekers');
+  const linkVal = await page.locator('.card:has-text("Teaserpagina (website") input[readonly]').inputValue();
+  ok('teaser: UI shows secret preview link after enabling', linkVal.includes('?voorbeeld='), linkVal);
+  const teaserKey = linkVal.split('voorbeeld=')[1];
+  ok('teaser: preview key is long and random', /^[a-f0-9]{20}$/.test(teaserKey), teaserKey);
+  for (const p of ['/', '/diensten', '/nieuws/testartikel-over-zichtbaarheid', '/contact', '/bestaat-niet', '/sitemap.xml']) {
+    const r = await get(p);
+    ok(`teaser: visitor gets 503 teaser on ${p}`, r.status === 503 && r.text.includes('Binnenkort') && !r.text.includes('site-header'), String(r.status));
+  }
+  const tv = await get('/');
+  ok('teaser: Retry-After, noindex, no-store', tv.headers.get('retry-after') === '3600' && /noindex/.test(tv.headers.get('x-robots-tag') || '') && tv.headers.get('cache-control') === 'no-store' && tv.text.includes('name="robots" content="noindex'));
+  ok('teaser: text is escaped, no script injection', !/<b>online<\/b>|<script>alert/.test(tv.text) && tv.text.includes('Binnenkort online'));
+  ok('teaser: shows mail and WhatsApp buttons', tv.text.includes('mailto:') && tv.text.includes('wa.me/'));
+  ok('teaser: real site content is not leaked', !tv.text.includes('Maximale marketingkracht'));
+  ok('teaser: assets, media, robots, admin and API stay reachable', (await get('/assets/css/style.css')).status === 200 && (await get('/robots.txt')).status === 200 && (await get('/admin')).status === 200 && (await get(media[0].url)).status === 200 && (await get('/api/me')).status === 200);
+  const adm = await get('/', { headers: { Cookie: cookie } });
+  ok('teaser: logged-in CMS user sees the real site (private cache)', adm.status === 200 && adm.text.includes('Maximale marketingkracht') && /private/.test(adm.headers.get('cache-control') || ''));
+  const wrong = await get('/?voorbeeld=' + '0'.repeat(20));
+  ok('teaser: wrong preview key refused', wrong.status === 503);
+  const pv = await fetch(`${B}/?voorbeeld=${teaserKey}`);
+  const pvCookie = (pv.headers.get('set-cookie') || '').split(';')[0];
+  ok('teaser: preview link shows the real site and sets an HttpOnly cookie', pv.status === 200 && /HttpOnly/i.test(pv.headers.get('set-cookie') || '') && pvCookie.startsWith('fi_preview='));
+  ok('teaser: preview cookie keeps working on other pages', (await get('/diensten', { headers: { Cookie: pvCookie } })).status === 200);
+  const tp = await apiCall('POST', 'preview', { col: 'teaser', doc: { title: 'Voorbeeldkop', text: 'Tekst', eyebrow: '' } }, cookie);
+  ok('teaser: preview of unsaved text works', tp.status === 200 && tp.data.html.includes('Voorbeeldkop'));
+  ok('teaser: editors cannot switch it on', (await apiCall('POST', 'settings', { teaser: { enabled: false } }, null)).status === 401);
+  await page.goto(B + '/admin#/dashboard');
+  await page.waitForSelector('text=De website is dicht voor bezoekers');
+  ok('teaser: dashboard warns while it is on', true);
+  await page.goto(B + '/admin#/settings');
+  await page.waitForSelector('text=Teaserpagina (website tijdelijk dicht)');
+  await page.locator('.card:has-text("Teaserpagina (website") label.check:has-text("Teaserpagina AAN") input').uncheck();
+  await page.click('.topbar >> text=Opslaan');
+  await page.waitForSelector('text=Opgeslagen. Wijzigingen');
+  const off = await get('/');
+  ok('teaser: switching off reopens the site immediately', off.status === 200 && off.text.includes('Maximale marketingkracht') && /public/.test(off.headers.get('cache-control') || ''));
+
   const chk = await apiCall('POST', 'storage-check', {}, cookie);
   ok('storage check: write/read/list/delete all pass', chk.status === 200 && chk.data.ok === true, JSON.stringify(chk.data.steps?.filter((x) => !x.ok)));
   ok('storage check is admin-only', (await apiCall('POST', 'storage-check', {}, null)).status === 401);
