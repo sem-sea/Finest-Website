@@ -82,7 +82,7 @@
     "progressBar": true
   },
   "teaser": {
-    "enabled": false,
+    "enabled": true,
     "eyebrow": "Own your spotlight",
     "title": "Binnenkort online",
     "text": "We werken aan onze nieuwe website. Wil je nu al kennismaken? Stuur ons gerust een bericht.",

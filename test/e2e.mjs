@@ -44,20 +44,11 @@ let jsErrors = [];
 let lastPage = null;
 const dialogs = [];
 try {
-  // ---------- public site ----------
-  for (const p of ['/', '/diensten', '/over-ons', '/contact', '/nieuws', '/klantverhalen', '/privacyverklaring', '/algemene-voorwaarden', '/nieuws/contentplanning-verschil-voor-opticiens', '/klantverhalen/oogzorg-vertellen-zonder-te-verkopen']) {
-    const r = await get(p);
-    ok(`public ${p} = 200`, r.status === 200 && r.text.includes('<main>'), String(r.status));
-  }
-  ok('404 for unknown page', (await get('/bestaat-niet')).status === 404);
-  ok('sitemap lists articles', (await get('/sitemap.xml')).text.includes('/nieuws/contentplanning-verschil-voor-opticiens'));
-  ok('feed is RSS', (await get('/feed.xml')).text.includes('<rss'));
-  ok('robots blocks /admin', (await get('/robots.txt')).text.includes('Disallow: /admin'));
-  const home = (await get('/')).text;
-  ok('home has 4 explainer canvases', (home.match(/class="explainer-canvas"/g) || []).length === 4);
-  ok('home has FAQ rows server-rendered', (home.match(/class="faq-row"/g) || []).length === 16);
-  ok('home has JSON-LD', home.includes('application/ld+json'));
-  ok('security headers on pages', (await get('/')).headers.get('x-content-type-options') === 'nosniff');
+  // ---------- shipped state: the teaser is ON until someone switches it off ----------
+  const shipped = await get('/');
+  ok('shipped: visitors see the teaser (503) before anything is configured', shipped.status === 503 && shipped.text.includes('Binnenkort online') && shipped.text.includes('class="teaser__bg"'), String(shipped.status));
+  ok('shipped: real content is hidden', !shipped.text.includes('Maximale marketingkracht') && (await get('/diensten')).status === 503);
+  ok('shipped: admin and assets stay reachable', (await get('/admin')).status === 200 && (await get('/assets/css/style.css')).status === 200 && (await get('/robots.txt')).status === 200);
 
   // ---------- security / auth (API) ----------
   ok('admin API requires login', (await apiCall('GET', 'docs?col=pages')).status === 401);
@@ -89,6 +80,27 @@ try {
   const cookies = await ctx.cookies();
   const sess = cookies.find((c) => c.name === 'fi_session');
   ok('session cookie is HttpOnly + SameSite=Strict', sess?.httpOnly === true && sess?.sameSite === 'Strict');
+
+  const cookie0 = `fi_session=${sess.value}`;
+  const seedSettings = (await apiCall('GET', 'settings', null, cookie0)).data.settings;
+  ok('shipped: teaser setting is on in the seed', seedSettings.teaser.enabled === true);
+  await apiCall('POST', 'settings', { ...seedSettings, teaser: { ...seedSettings.teaser, enabled: false } }, cookie0);
+
+  // ---------- public site (teaser off) ----------
+  for (const p of ['/', '/diensten', '/over-ons', '/contact', '/nieuws', '/klantverhalen', '/privacyverklaring', '/algemene-voorwaarden', '/nieuws/contentplanning-verschil-voor-opticiens', '/klantverhalen/oogzorg-vertellen-zonder-te-verkopen']) {
+    const r = await get(p);
+    ok(`public ${p} = 200`, r.status === 200 && r.text.includes('<main>'), String(r.status));
+  }
+  ok('404 for unknown page', (await get('/bestaat-niet')).status === 404);
+  ok('sitemap lists articles', (await get('/sitemap.xml')).text.includes('/nieuws/contentplanning-verschil-voor-opticiens'));
+  ok('feed is RSS', (await get('/feed.xml')).text.includes('<rss'));
+  ok('robots blocks /admin', (await get('/robots.txt')).text.includes('Disallow: /admin'));
+  const home = (await get('/')).text;
+  ok('home has 4 explainer canvases', (home.match(/class="explainer-canvas"/g) || []).length === 4);
+  ok('home has FAQ rows server-rendered', (home.match(/class="faq-row"/g) || []).length === 16);
+  ok('home has JSON-LD', home.includes('application/ld+json'));
+  ok('security headers on pages', (await get('/')).headers.get('x-content-type-options') === 'nosniff');
+
 
   // --- edit existing page text ---
   await page.goto(B + '/admin#/pages/diensten');

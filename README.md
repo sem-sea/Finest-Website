@@ -32,3 +32,5 @@ Het WordPress-thema staat als zip in de root (`finest-impact-theme-v*.zip`).
 Instellingen → **Teaserpagina (website tijdelijk dicht)**. Aan = bezoekers zien alleen de teaser (HTTP 503, `Retry-After`, noindex, nooit gecachet).
 Ingelogde CMS-gebruikers en wie de geheime voorbeeldlink (`/?voorbeeld=…`) heeft, zien de echte site. `/admin`, `/api`, `/assets`, `/media` en `robots.txt` blijven bereikbaar.
 In het WordPress-thema: Weergave → Teaserpagina (zelfde gedrag).
+
+**Let op:** de teaser staat standaard AAN (`content-seed/settings.json`). Zodra de opslag is gekoppeld en je bent ingelogd, zet je hem uit onder Instellingen → Teaserpagina.
