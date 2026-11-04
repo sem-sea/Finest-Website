@@ -315,7 +315,7 @@ async function inboxView(refreshUnread) {
 // ---------- settings ----------
 async function settingsView() {
   const s = (await api.get('settings')).settings;
-  const t = (s.teaser ||= { enabled: false, eyebrow: 'Own your spotlight', title: 'Binnenkort online', text: '', buttonLabel: '', buttonUrl: '', showEmail: true, showWhatsapp: true, previewKey: '' });
+  const t = (s.teaser ||= { enabled: false, eyebrow: 'Own your spotlight', title: 'Binnenkort online', text: '', buttonLabel: '', buttonUrl: '', image: '/assets/img/photo-1.jpg', showEmail: true, showWhatsapp: true, previewKey: '' });
   s.defaultSeo ||= {}; s.contact ||= {}; s.whatsapp ||= {}; s.footer ||= { platform: [], legal: [] }; s.menu ||= []; s.motion ||= {};
   const linkList = (arr, title) => {
     const box = h('div');
@@ -350,6 +350,7 @@ async function settingsView() {
       checkInput(t, 'enabled', 'Teaserpagina AAN (de rest van de website is dicht voor bezoekers)', { onChange: () => draw2() }),
       h('div', { class: 'grid2' }, field('Kleine regel boven de kop', textInput(t, 'eyebrow', { max: 80 })), field('Kop', textInput(t, 'title', { max: 160 }))),
       field('Tekst', areaInput(t, 'text', { rows: 3, max: 500 })),
+      imageField(t, 'image', { label: 'Achtergrondfoto (leeg = effen achtergrond)' }),
       h('div', { class: 'grid2' }, field('Extra knop: tekst (optioneel)', textInput(t, 'buttonLabel', { max: 60 })), field('Extra knop: link', textInput(t, 'buttonUrl', { placeholder: 'https://…' }))),
       checkInput(t, 'showEmail', 'Toon het e-mailadres als knop'), checkInput(t, 'showWhatsapp', 'Toon de WhatsApp-knop'),
       h('div', { class: 'row', style: { margin: '8px 0 12px' } }, h('button', { type: 'button', class: 'btn ghost', onclick: async () => {

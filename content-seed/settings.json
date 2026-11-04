@@ -90,6 +90,7 @@
     "buttonUrl": "",
     "showEmail": true,
     "showWhatsapp": true,
-    "previewKey": ""
+    "previewKey": "",
+    "image": "/assets/img/photo-1.jpg"
   }
 }

@@ -267,6 +267,14 @@ try {
   ok('teaser: Retry-After, noindex, no-store', tv.headers.get('retry-after') === '3600' && /noindex/.test(tv.headers.get('x-robots-tag') || '') && tv.headers.get('cache-control') === 'no-store' && tv.text.includes('name="robots" content="noindex'));
   ok('teaser: text is escaped, no script injection', !/<b>online<\/b>|<script>alert/.test(tv.text) && tv.text.includes('Binnenkort online'));
   ok('teaser: shows mail and WhatsApp buttons', tv.text.includes('mailto:') && tv.text.includes('wa.me/'));
+  ok('teaser: has the background photo and photo styling', tv.text.includes('class="teaser__bg"') && tv.text.includes('/assets/img/photo-1.jpg') && tv.text.includes('teaser--photo'));
+  const cur = (await apiCall('GET', 'settings', null, cookie)).data.settings;
+  await apiCall('POST', 'settings', { ...cur, teaser: { ...cur.teaser, enabled: true, image: 'javascript:alert(1)' } }, cookie);
+  const noImg = await get('/');
+  ok('teaser: unsafe image URL is dropped (plain teaser)', noImg.status === 503 && !noImg.text.includes('teaser__bg') && !noImg.text.includes('javascript:'));
+  await apiCall('POST', 'settings', { ...cur, teaser: { ...cur.teaser, enabled: true, image: media[0].url } }, cookie);
+  ok('teaser: photo from the media library can be used', (await get('/')).text.includes(media[0].url));
+  await apiCall('POST', 'settings', { ...cur, teaser: { ...cur.teaser, enabled: true, image: '/assets/img/photo-1.jpg' } }, cookie);
   ok('teaser: real site content is not leaked', !tv.text.includes('Maximale marketingkracht'));
   ok('teaser: assets, media, robots, admin and API stay reachable', (await get('/assets/css/style.css')).status === 200 && (await get('/robots.txt')).status === 200 && (await get('/admin')).status === 200 && (await get(media[0].url)).status === 200 && (await get('/api/me')).status === 200);
   const adm = await get('/', { headers: { Cookie: cookie } });
