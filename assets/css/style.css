@@ -346,7 +346,7 @@ html.nav-open .nav-overlay {
 	.team-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (min-width: 900px) {
-	.team-grid { grid-template-columns: repeat(4, 1fr); }
+	.team-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
 /* ---------- steps (diensten) ---------- */
